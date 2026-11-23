@@ -4,10 +4,9 @@ import '../styles/global.css'
 
 import Navbar from './Navbar.jsx'
 import Hero from './Hero.astro'
-import ServicesAccordion from './ServicesAccordion.jsx'
+import Services from './Services.astro'
 import Portfolio from './Portfolio.astro'
 import Process from './Process.astro'
-import CTA from './CTA.astro'
 import Contact from './Contact.jsx'
 import Footer from './Footer.astro'
 import WhatsAppButton from './WhatsAppButton.astro'
@@ -21,12 +20,24 @@ const { lang } = Astro.props
 
 <Layout lang={lang}>
   <Navbar client:load lang={lang} />
-  <Hero lang={lang} />
-  <ServicesAccordion client:visible lang={lang} />
-  <Portfolio lang={lang} />
-  <Process lang={lang} />
-  <CTA lang={lang} />
-  <Contact client:visible lang={lang} />
-  <Footer lang={lang} />
+  <main>
+    <Hero lang={lang} />
+    <Services lang={lang} />
+    <Portfolio lang={lang} />
+    <Process lang={lang} />
+  </main>
+
+  <!-- Cierre oscuro: contacto + pie, con el fondo de puntos detrás -->
+  <div class="relative bg-night text-white overflow-hidden isolate">
+    <canvas
+      data-dots
+      aria-hidden="true"
+      class="absolute inset-0 w-full h-full -z-10 [mask-image:radial-gradient(ellipse_80%_70%_at_50%_40%,#000_35%,transparent_100%)]"
+    ></canvas>
+    <Contact client:visible lang={lang} />
+    <Footer lang={lang} />
+  </div>
   <WhatsAppButton lang={lang} />
 </Layout>
+
+<script src="../scripts/dots.js"></script>

@@ -2,6 +2,26 @@ import { useState, useEffect } from "react";
 import { Menu, X, FileText } from "lucide-react";
 import { ui, paths, cvFiles } from "../i18n/ui.js";
 
+// Molinete chico del logo (mismo dibujo que Molinete.astro), en currentColor
+const BLADE = "M0 0 L0 -100 A50 50 0 0 1 0 0 Z";
+function MiniMolinete({ className }) {
+  const aspas = (op, rot, sc) => (
+    <g transform={`rotate(${rot}) scale(${sc})`} opacity={op}>
+      {[0, 90, 180, 270].map((r) => (
+        <path key={r} d={BLADE} transform={`rotate(${r})`} />
+      ))}
+    </g>
+  );
+  return (
+    <svg viewBox="-110 -110 220 220" fill="currentColor" className={className} aria-hidden="true">
+      <g transform="rotate(45)">
+        {aspas(0.45, 22, 0.95)}
+        {aspas(1, 0, 1)}
+      </g>
+    </svg>
+  );
+}
+
 export default function Navbar({ lang = "es" }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -15,29 +35,26 @@ export default function Navbar({ lang = "es" }) {
   ];
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 50);
+    const onScroll = () => setScrolled(window.scrollY > 40);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const LangSwitch = ({ className = "" }) => (
-    <div className={`flex items-center gap-1.5 text-xs tracking-widest ${className}`}>
+  // Arriba de todo el menú va blanco sobre el fucsia; al bajar, fondo blanco y texto oscuro.
+  const solid = scrolled || isOpen;
+  const text = solid ? "text-ink" : "text-white";
+  const soft = solid ? "text-muted hover:text-ink" : "text-white/80 hover:text-white";
+
+  const LangSwitch = () => (
+    <div className="flex items-center gap-1.5 text-[13px] font-medium">
       {["es", "en"].map((l, i) => (
         <span key={l} className="flex items-center gap-1.5">
-          {i > 0 && <span className="text-gray-700" aria-hidden="true">/</span>}
+          {i > 0 && <span className={solid ? "text-line" : "text-white/40"} aria-hidden="true">/</span>}
           {l === lang ? (
-            <span className="text-white font-medium" aria-current="true">
-              {l.toUpperCase()}
-            </span>
+            <span className={text} aria-current="true">{l.toUpperCase()}</span>
           ) : (
-            <a
-              href={paths[l]}
-              hrefLang={l}
-              lang={l}
-              title={t.switchTo}
-              className="text-gray-500 hover:text-violet-400 transition-colors duration-200"
-            >
+            <a href={paths[l]} hrefLang={l} lang={l} title={t.switchTo} className={`${soft} transition-colors`}>
               {l.toUpperCase()}
             </a>
           )}
@@ -48,72 +65,63 @@ export default function Navbar({ lang = "es" }) {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled || isOpen
-          ? "bg-black-950/90 backdrop-blur-md"
-          : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+        solid ? "bg-white/90 backdrop-blur-md border-b border-line" : "bg-transparent border-b border-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 md:h-20">
-          {/* Logo */}
-          <a href={paths[lang]} className="flex items-center gap-2.5">
-            <img src="/logo-nuevo.png" alt="ICA" className="h-8" />
-            <span className="text-white text-sm font-semibold tracking-wide">ICA</span>
+      <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+        <div className="flex items-center justify-between h-16 md:h-[72px]">
+          <a href={paths[lang]} aria-label={t.home} className={`flex items-center gap-2.5 ${text}`}>
+            <MiniMolinete className={`h-7 w-7 ${solid ? "text-fucsia" : "text-white"}`} />
+            <span className="font-display text-lg leading-none">ICA</span>
           </a>
 
-          {/* Desktop — centered links */}
-          <div className="hidden md:flex items-center gap-8 lg:gap-10 absolute left-1/2 -translate-x-1/2">
+          <div className="hidden md:flex items-center gap-9">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className="relative text-xs text-gray-400 hover:text-white tracking-widest uppercase transition-colors duration-200 py-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-violet-500 after:transition-all after:duration-300 hover:after:w-full"
-              >
+              <a key={link.href} href={link.href} className={`text-[15px] font-medium ${soft} transition-colors duration-200`}>
                 {link.label}
               </a>
             ))}
           </div>
 
-          {/* Desktop — right: CV + language */}
           <div className="hidden md:flex items-center gap-6">
             <a
               href={cvFiles[lang]}
               target="_blank"
               rel="noopener"
               title={t.cvTitle}
-              className="inline-flex items-center gap-1.5 text-xs text-gray-300 hover:text-white border border-gray-700 hover:border-violet-400 rounded-full px-3.5 py-1.5 tracking-widest uppercase transition-colors duration-200"
+              className={`inline-flex items-center gap-1.5 text-[13px] font-semibold rounded-full px-4 py-1.5 border transition-colors duration-200 ${
+                solid ? "border-line text-ink hover:border-fucsia hover:text-fucsia-deep" : "border-white/50 text-white hover:bg-white hover:text-fucsia-deep"
+              }`}
             >
-              <FileText size={13} aria-hidden="true" />
+              <FileText size={14} aria-hidden="true" />
               {t.cv}
             </a>
             <LangSwitch />
           </div>
 
-          {/* Mobile: language + toggle */}
           <div className="flex md:hidden items-center gap-5">
             <LangSwitch />
             <button
               onClick={() => setIsOpen(!isOpen)}
               aria-label={isOpen ? t.close : t.menu}
               aria-expanded={isOpen}
-              className="text-gray-400 hover:text-white transition-colors"
+              className={text}
             >
               {isOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile menu */}
         {isOpen && (
-          <div className="md:hidden pb-6 border-t border-gray-800/50">
-            <div className="flex flex-col gap-4 pt-4">
+          <div className="md:hidden pb-6">
+            <div className="flex flex-col gap-1 pt-2">
               {navLinks.map((link) => (
                 <a
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="text-gray-400 hover:text-white transition-colors duration-200 text-sm tracking-wide"
+                  className="text-ink text-lg font-medium py-2"
                 >
                   {link.label}
                 </a>
@@ -122,9 +130,9 @@ export default function Navbar({ lang = "es" }) {
                 href={cvFiles[lang]}
                 target="_blank"
                 rel="noopener"
-                className="inline-flex items-center gap-2 text-violet-400 text-sm tracking-wide"
+                className="inline-flex items-center gap-2 text-fucsia-deep text-lg font-medium py-2"
               >
-                <FileText size={15} aria-hidden="true" />
+                <FileText size={17} aria-hidden="true" />
                 {t.cvTitle}
               </a>
             </div>

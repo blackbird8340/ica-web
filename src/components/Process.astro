@@ -9,30 +9,21 @@ const { lang } = Astro.props
 const t = ui[lang].process
 ---
 
-<section id="proceso" class="py-32 relative">
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div data-reveal class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-      <!-- Left: Heading (sticky on desktop) -->
-      <div class="lg:sticky lg:top-32 lg:self-start">
-        <p class="text-xs text-gray-500 tracking-widest uppercase mb-4">{t.label}</p>
-        <h2 class="text-3xl md:text-5xl font-medium text-white tracking-tight">
-          {t.title1} <span class="font-serif italic font-normal">{t.title2}</span>
-        </h2>
-        <p class="text-gray-400 font-light mt-6 max-w-md leading-relaxed">{t.intro}</p>
-      </div>
-
-      <!-- Right: Steps -->
-      <div data-reveal class="space-y-0">
-        {t.steps.map((step, i) => (
-          <div class="group py-8 border-t border-gray-800/40 first:border-t-0">
-            <span class="text-violet-500 text-sm font-medium tracking-wide">{String(i + 1).padStart(2, '0')}</span>
-            <h3 class="text-lg font-medium text-white mt-2 mb-3 group-hover:text-violet-400 transition-colors duration-200">
-              {step.title}
-            </h3>
-            <p class="text-gray-400 font-light text-sm leading-relaxed">{step.description}</p>
-          </div>
-        ))}
-      </div>
+<section id="proceso" class="py-28 md:py-40 bg-mist border-y border-line">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+    <div data-reveal class="grid lg:grid-cols-12 gap-6 lg:gap-10 mb-14 md:mb-20">
+      <h2 class="font-display text-4xl md:text-6xl lg:col-span-7">{t.title}</h2>
+      <p class="text-muted text-lg leading-relaxed lg:col-span-5 lg:self-end">{t.intro}</p>
     </div>
+
+    <ol data-reveal class="grid sm:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12">
+      {t.steps.map((step, i) => (
+        <li class="border-t-2 border-ink pt-6">
+          <span class="font-mono text-[13px] text-fucsia-deep">{i + 1} / {t.steps.length}</span>
+          <h3 class="text-2xl font-semibold tracking-tight mt-3 mb-3">{step.title}</h3>
+          <p class="text-muted leading-relaxed">{step.description}</p>
+        </li>
+      ))}
+    </ol>
   </div>
 </section>

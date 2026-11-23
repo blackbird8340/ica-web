@@ -15,10 +15,10 @@ export const ui = {
     meta: {
       title: 'ICA | Desarrollo Web & Soluciones Digitales',
       description:
-        'Diseñamos y desarrollamos sitios web, landing pages, sistemas a medida y productos con IA. Páginas rápidas, modernas y que generan resultados.',
+        'Estudio de desarrollo de Imanol Castro. Sitios web, sistemas de gestión y apps con IA, desde la primera idea hasta producción.',
       ogLocale: 'es_AR',
       keywords:
-        'desarrollo web, diseño web, landing page, sistema a medida, páginas web, Argentina, agencia digital, programación web, sitios web, inteligencia artificial',
+        'desarrollo web, diseño web, landing page, sistema a medida, páginas web, Argentina, programación web, sitios web, inteligencia artificial, facturación electrónica',
     },
     nav: {
       services: 'Servicios',
@@ -30,110 +30,87 @@ export const ui = {
       switchTo: 'English',
       menu: 'Abrir menú',
       close: 'Cerrar menú',
+      home: 'ICA, inicio',
     },
     hero: {
-      label: 'Llevamos tu negocio al mundo digital',
-      title1: 'Desarrollo web &',
-      title2: 'soluciones digitales.',
+      title: 'Sitios, sistemas y apps que se usan todos los días.',
       subtitle:
-        'Diseñamos y desarrollamos sitios web, sistemas a medida y productos con IA que hacen crecer tu negocio.',
-      cta: 'Empezar un proyecto',
+        'ICA es el estudio de desarrollo de Imanol Castro. Diseñamos y programamos desde la primera idea hasta que está en producción, y después lo seguimos cuidando.',
+      cta: 'Contanos tu proyecto',
       secondary: 'Ver proyectos',
-      stats: [
-        { value: '5+', label: 'Proyectos' },
-        { value: '24/7', label: 'Soporte' },
-        { value: '100%', label: 'Satisfacción' },
-      ],
     },
     services: {
-      label: 'Servicios',
-      title1: 'Lo que',
-      title2: 'hacemos',
-      intro:
-        'Desde una landing page hasta un sistema completo de gestión, nos adaptamos a lo que tu negocio necesita.',
+      title: 'Qué hacemos',
+      intro: 'Cada proyecto es a medida. Estos son los que más hacemos.',
+      example: 'Por ejemplo',
       items: [
         {
-          title: 'Landing Pages',
-          description:
-            'Páginas de aterrizaje optimizadas para convertir visitantes en clientes. Diseño atractivo, carga ultra rápida y enfocadas en resultados.',
+          title: 'Landing pages',
+          description: 'Una página enfocada en que el visitante te escriba o te compre. Rápida, clara y medible.',
+          example: 'Patagonia Inversiones',
         },
         {
-          title: 'Sitios Corporativos',
-          description:
-            'Sitios web completos y profesionales que comunican la identidad de tu marca. Responsive, multilenguaje y preparados para escalar.',
+          title: 'Sitios web',
+          description: 'El sitio completo de tu negocio, en uno o más idiomas, conectado a tu CRM o a tus herramientas.',
+          example: 'Black River Properties',
         },
         {
-          title: 'Sistemas a Medida',
-          description:
-            'Soluciones personalizadas: facturación electrónica, stock, administración e integraciones con IA. Todo lo que tu negocio necesite, hecho a medida.',
+          title: 'Sistemas de gestión',
+          description: 'Ventas, stock, facturación electrónica, paneles para tu equipo. Lo que hoy hacés en planillas, en un solo lugar.',
+          example: 'Ferretería Chacón, Conexo',
+        },
+        {
+          title: 'Apps y productos con IA',
+          description: 'Apps de iPhone y productos web que usan IA donde ahorra trabajo de verdad: leer documentos, resumir, ordenar datos.',
+          example: 'Lumisol, Current Wildfires',
         },
         {
           title: 'Mantenimiento',
-          description:
-            'Hosting, actualizaciones y soporte continuo para que tu sitio esté siempre funcionando perfecto y protegido.',
+          description: 'Hosting, dominio, correo, actualizaciones y copias de seguridad. Si algo falla, nos ocupamos.',
+          example: 'Todos nuestros clientes',
         },
       ],
     },
     portfolio: {
-      label: 'Proyectos',
-      title1: 'Trabajo',
-      title2: 'destacado',
-      intro:
-        'Productos propios y proyectos para clientes, en producción y con resultados medibles.',
-      results: 'Resultados',
+      title: 'Proyectos',
+      intro: 'Productos propios y trabajos para clientes. Todos están en uso.',
       stack: 'Tecnologías',
       visit: 'Ver sitio',
       appStore: 'Ver en App Store',
       private: 'Sistema privado del cliente',
+      wip: 'En desarrollo',
       moreTitle: 'Más trabajos',
-      cvTitle1: '¿Querés el detalle',
-      cvTitle2: 'completo?',
-      cvText:
-        'En el CV está toda la experiencia, los proyectos y las tecnologías con las que trabajamos.',
+      cvTitle: '¿Querés el detalle completo?',
+      cvText: 'En el CV de Imanol están la experiencia, los proyectos y las tecnologías con las que trabajamos.',
       cvPrimary: 'Ver CV en español',
       cvSecondary: 'CV in English',
     },
     process: {
-      label: 'Proceso',
-      title1: 'Metodología de',
-      title2: 'trabajo',
-      intro:
-        'Un proceso simple y transparente. Desde la idea hasta tu sitio en línea, cada etapa está diseñada para maximizar resultados.',
+      title: 'Cómo trabajamos',
+      intro: 'Cuatro pasos, y en cada uno ves avances reales antes de seguir.',
       steps: [
         {
-          title: 'Descubrimiento',
-          description:
-            'Nos contás qué necesitás. Analizamos tu negocio, tu competencia y tus objetivos para proponer la mejor estrategia digital.',
+          title: 'Entender',
+          description: 'Nos contás qué necesitás. Miramos tu negocio y tu competencia, y te proponemos qué hacer y cuánto cuesta.',
         },
         {
-          title: 'Diseño de UX',
-          description:
-            'Creamos wireframes y prototipos del sitio. Te mostramos cómo va a quedar y lo iteramos juntos hasta que sea perfecto.',
+          title: 'Diseñar',
+          description: 'Te mostramos cómo va a quedar antes de programar, y lo ajustamos juntos.',
         },
         {
-          title: 'Desarrollo',
-          description:
-            'Programamos tu sitio con las mejores tecnologías. Código limpio, rendimiento óptimo y experiencia responsive.',
+          title: 'Programar',
+          description: 'Lo construimos con pruebas automáticas y te pasamos una versión para que la uses antes de publicar.',
         },
         {
-          title: 'Lanzamiento',
-          description:
-            'Publicamos tu sitio, configuramos analytics y SEO. Te damos soporte continuo para que todo funcione perfecto.',
+          title: 'Publicar y cuidar',
+          description: 'Lo ponemos en línea con analítica y SEO, y quedamos a cargo del mantenimiento.',
         },
       ],
     },
-    cta: {
-      title1: '¿Listo para llevar tu negocio al',
-      title2: 'siguiente nivel',
-      text: 'No importa el tamaño de tu negocio. Creamos la solución digital que necesitás para crecer.',
-      button: 'Contactanos ahora',
-    },
     contact: {
-      label: 'Contacto',
-      title1: 'Empecemos tu',
-      title2: 'proyecto',
-      intro: 'Contanos tu idea y te respondemos en menos de 24 horas.',
-      whatsappHint: 'Respuesta inmediata',
+      title: '¿Tenés un proyecto en mente?',
+      intro: 'Contanos qué necesitás y te respondemos en menos de 24 horas.',
+      whatsappHint: 'La forma más rápida',
       emailHint: 'Email',
       phoneHint: 'Teléfono',
       locationHint: 'Ubicación',
@@ -142,16 +119,16 @@ export const ui = {
       email: 'Email',
       emailPlaceholder: 'tu@email.com',
       message: 'Mensaje',
-      messagePlaceholder: 'Contanos sobre tu proyecto...',
-      success: 'Mensaje enviado correctamente. Te responderemos pronto.',
-      error: 'Error al enviar. Intentá por WhatsApp o email directo.',
-      sending: 'Enviando...',
+      messagePlaceholder: 'Qué necesitás, para cuándo y cualquier dato que sirva',
+      success: 'Mensaje enviado. Te respondemos en menos de 24 horas.',
+      error: 'No se pudo enviar. Escribinos por WhatsApp o a contacto@icaweb.dev.',
+      sending: 'Enviando…',
       send: 'Enviar mensaje',
       subject: 'Nuevo mensaje de',
     },
     footer: { rights: 'Todos los derechos reservados' },
     whatsapp: {
-      aria: 'Contactar por WhatsApp',
+      aria: 'Escribir por WhatsApp',
       text: 'Hola! Vi tu web y me interesa un proyecto.',
     },
   },
@@ -160,10 +137,10 @@ export const ui = {
     meta: {
       title: 'ICA | Web Development & Digital Solutions',
       description:
-        'We design and build websites, landing pages, custom systems and AI-powered products. Fast, modern sites that deliver results.',
+        "Imanol Castro's development studio. Websites, business systems and AI-powered apps, from the first idea to production.",
       ogLocale: 'en_US',
       keywords:
-        'web development, web design, landing page, custom software, websites, Argentina, digital agency, AI, full-stack developer',
+        'web development, web design, landing page, custom software, websites, Argentina, AI, full-stack developer, iOS app',
     },
     nav: {
       services: 'Services',
@@ -175,110 +152,87 @@ export const ui = {
       switchTo: 'Español',
       menu: 'Open menu',
       close: 'Close menu',
+      home: 'ICA, home',
     },
     hero: {
-      label: 'Taking your business digital',
-      title1: 'Web development &',
-      title2: 'digital solutions.',
+      title: 'Websites, systems and apps people use every day.',
       subtitle:
-        'We design and build websites, custom systems and AI-powered products that help your business grow.',
-      cta: 'Start a project',
+        "ICA is Imanol Castro's development studio. We design and build from the first idea all the way to production, and we keep looking after it afterwards.",
+      cta: 'Tell us about your project',
       secondary: 'See our work',
-      stats: [
-        { value: '5+', label: 'Projects' },
-        { value: '24/7', label: 'Support' },
-        { value: '100%', label: 'Satisfaction' },
-      ],
     },
     services: {
-      label: 'Services',
-      title1: 'What we',
-      title2: 'do',
-      intro:
-        'From a landing page to a full management system, we adapt to what your business needs.',
+      title: 'What we do',
+      intro: 'Every project is custom. These are the ones we do most.',
+      example: 'For example',
       items: [
         {
-          title: 'Landing Pages',
-          description:
-            'Landing pages built to turn visitors into customers. Striking design, lightning-fast loading and a focus on results.',
+          title: 'Landing pages',
+          description: 'One page built to get visitors to contact you or buy. Fast, clear and measurable.',
+          example: 'Patagonia Inversiones',
         },
         {
-          title: 'Business Websites',
-          description:
-            'Complete, professional websites that communicate your brand. Responsive, multilingual and ready to scale.',
+          title: 'Websites',
+          description: 'Your full business website, in one or more languages, connected to your CRM or your tools.',
+          example: 'Black River Properties',
         },
         {
-          title: 'Custom Systems',
-          description:
-            'Tailored solutions: electronic invoicing, inventory, back office and AI integrations. Whatever your business needs, built to fit.',
+          title: 'Business systems',
+          description: 'Sales, inventory, electronic invoicing, dashboards for your team. What you now do in spreadsheets, in one place.',
+          example: 'Ferretería Chacón, Conexo',
+        },
+        {
+          title: 'Apps and AI products',
+          description: 'iPhone apps and web products that use AI where it really saves work: reading documents, summarizing, organizing data.',
+          example: 'Lumisol, Current Wildfires',
         },
         {
           title: 'Maintenance',
-          description:
-            'Hosting, updates and ongoing support so your site always runs smoothly and stays secure.',
+          description: 'Hosting, domain, email, updates and backups. If something breaks, we handle it.',
+          example: 'All of our clients',
         },
       ],
     },
     portfolio: {
-      label: 'Work',
-      title1: 'Featured',
-      title2: 'work',
-      intro:
-        'Our own products and client projects, live in production with measurable results.',
-      results: 'Results',
+      title: 'Work',
+      intro: 'Our own products and client work. All of it is in use.',
       stack: 'Stack',
       visit: 'Visit site',
       appStore: 'View on the App Store',
       private: 'Private client system',
+      wip: 'In development',
       moreTitle: 'More work',
-      cvTitle1: 'Want the',
-      cvTitle2: 'full picture?',
-      cvText:
-        'The CV covers the full experience, projects and the technologies we work with.',
+      cvTitle: 'Want the full picture?',
+      cvText: "Imanol's CV covers the experience, projects and technologies we work with.",
       cvPrimary: 'View CV in English',
       cvSecondary: 'CV en español',
     },
     process: {
-      label: 'Process',
-      title1: 'How we',
-      title2: 'work',
-      intro:
-        'A simple, transparent process. From the first idea to your site going live, every stage is designed to get results.',
+      title: 'How we work',
+      intro: 'Four steps, and at each one you see real progress before we move on.',
       steps: [
         {
-          title: 'Discovery',
-          description:
-            'You tell us what you need. We study your business, your competitors and your goals to propose the best digital strategy.',
+          title: 'Understand',
+          description: 'You tell us what you need. We look at your business and competitors and propose what to build and what it costs.',
         },
         {
-          title: 'UX Design',
-          description:
-            'We create wireframes and prototypes, show you how it will look and iterate together until it is right.',
+          title: 'Design',
+          description: 'We show you how it will look before writing code, and we refine it together.',
         },
         {
-          title: 'Development',
-          description:
-            'We build your site with modern technology. Clean code, top performance and a fully responsive experience.',
+          title: 'Build',
+          description: 'We build it with automated tests and give you a version to try before it goes live.',
         },
         {
-          title: 'Launch',
-          description:
-            'We publish your site and set up analytics and SEO, then keep supporting you so everything keeps running smoothly.',
+          title: 'Launch and look after',
+          description: 'We put it online with analytics and SEO, and we take care of maintenance.',
         },
       ],
     },
-    cta: {
-      title1: 'Ready to take your business to the',
-      title2: 'next level',
-      text: 'Whatever the size of your business, we build the digital solution you need to grow.',
-      button: 'Get in touch',
-    },
     contact: {
-      label: 'Contact',
-      title1: "Let's start your",
-      title2: 'project',
-      intro: "Tell us about your idea and we'll get back to you within 24 hours.",
-      whatsappHint: 'Fastest reply',
+      title: 'Got a project in mind?',
+      intro: "Tell us what you need and we'll get back to you within 24 hours.",
+      whatsappHint: 'Fastest way to reach us',
       emailHint: 'Email',
       phoneHint: 'Phone',
       locationHint: 'Location',
@@ -287,16 +241,16 @@ export const ui = {
       email: 'Email',
       emailPlaceholder: 'you@email.com',
       message: 'Message',
-      messagePlaceholder: 'Tell us about your project...',
-      success: "Message sent. We'll get back to you soon.",
-      error: 'Something went wrong. Please reach us on WhatsApp or by email.',
-      sending: 'Sending...',
+      messagePlaceholder: 'What you need, by when, and anything else that helps',
+      success: "Message sent. We'll reply within 24 hours.",
+      error: "Couldn't send it. Reach us on WhatsApp or at contacto@icaweb.dev.",
+      sending: 'Sending…',
       send: 'Send message',
       subject: '[EN] Nuevo mensaje de',
     },
     footer: { rights: 'All rights reserved' },
     whatsapp: {
-      aria: 'Contact us on WhatsApp',
+      aria: 'Message us on WhatsApp',
       text: "Hi! I saw your website and I'm interested in a project.",
     },
   },

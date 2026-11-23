@@ -10,17 +10,14 @@ const { lang } = Astro.props
 const t = ui[lang].portfolio
 const otherLang = lang === 'es' ? 'en' : 'es'
 
-const arrow = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>`
+const arrow = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>`
 ---
 
-<section id="portfolio" class="py-32 relative">
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div data-reveal class="mb-20 md:mb-28">
-      <p class="text-xs text-gray-500 tracking-widest uppercase mb-4">{t.label}</p>
-      <h2 class="text-3xl md:text-5xl font-medium text-white tracking-tight">
-        {t.title1} <span class="font-serif italic font-normal">{t.title2}</span>
-      </h2>
-      <p class="text-gray-400 font-light mt-4 max-w-2xl">{t.intro}</p>
+<section id="portfolio" class="py-28 md:py-40 border-t border-line">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+    <div data-reveal class="grid lg:grid-cols-12 gap-6 lg:gap-10 mb-16 md:mb-24">
+      <h2 class="font-display text-4xl md:text-6xl lg:col-span-7">{t.title}</h2>
+      <p class="text-muted text-lg leading-relaxed lg:col-span-5 lg:self-end">{t.intro}</p>
     </div>
 
     <!-- Casos destacados -->
@@ -32,21 +29,21 @@ const arrow = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" vi
         const linkLabel = p.linkType === 'appStore' ? t.appStore : t.visit
         const Frame = href ? 'a' : 'div'
         const frameAttrs = href
-          ? { href, target: '_blank', rel: 'noopener noreferrer', 'aria-label': `${p.name} — ${linkLabel}` }
+          ? { href, target: '_blank', rel: 'noopener noreferrer', 'aria-label': `${p.name}: ${linkLabel}` }
           : {}
         return (
-          <article data-reveal class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          <article data-reveal class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
             <Frame
               {...frameAttrs}
               class:list={[
-                'group block relative overflow-hidden rounded-2xl border border-gray-800/70 aspect-[16/10] lg:col-span-7',
+                'group block relative overflow-hidden rounded-2xl border border-line bg-mist aspect-[16/10] lg:col-span-7',
                 flip && 'lg:order-2',
               ]}
               style={p.imageBg ? `background:${p.imageBg}` : undefined}
             >
               <img
                 src={p.image}
-                alt={`${p.name} — ${c.tagline}`}
+                alt={`${p.name}: ${c.tagline}`}
                 loading="lazy"
                 decoding="async"
                 class:list={[
@@ -57,31 +54,22 @@ const arrow = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" vi
             </Frame>
 
             <div class:list={['lg:col-span-5', flip && 'lg:order-1']}>
-              <div class="flex items-baseline gap-4 mb-5">
-                <span class="text-violet-500 text-sm font-medium tracking-wide">
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <span class="text-[11px] text-gray-500 tracking-widest uppercase">{c.kind}</span>
-              </div>
+              <p class="font-mono text-[12.5px] text-muted">{c.kind}</p>
+              <h3 class="font-display text-3xl md:text-[2.6rem] mt-3">{p.name}</h3>
+              <p class="text-lg md:text-xl font-medium text-fucsia-deep mt-3">{c.tagline}</p>
+              <p class="text-muted leading-relaxed mt-5">{c.summary}</p>
 
-              <h3 class="text-3xl md:text-4xl font-medium text-white tracking-tight">{p.name}</h3>
-              <p class="font-serif italic text-xl md:text-2xl text-gray-300 mt-2">{c.tagline}</p>
-              <p class="text-gray-400 font-light text-[15px] leading-relaxed mt-6">{c.summary}</p>
-
-              <dl class="grid grid-cols-3 gap-4 border-t border-gray-800/70 mt-8 pt-6">
+              <dl class="grid grid-cols-3 gap-4 border-t border-line mt-8 pt-6">
                 {c.metrics.map((m) => (
-                  <div>
-                    <dt class="sr-only">{m.label}</dt>
-                    <dd class="text-2xl md:text-3xl font-light text-white tracking-tight whitespace-nowrap">{m.value}</dd>
-                    <dd class="text-[11px] md:text-xs text-gray-500 font-light mt-1 leading-snug">{m.label}</dd>
+                  <div class="flex flex-col-reverse justify-end">
+                    <dt class="text-[12px] md:text-[13px] text-muted mt-1 leading-snug">{m.label}</dt>
+                    <dd class="text-2xl md:text-[1.9rem] font-semibold tracking-tight whitespace-nowrap">{m.value}</dd>
                   </div>
                 ))}
               </dl>
 
-              <ul class="flex flex-wrap gap-2 mt-8" aria-label={t.stack}>
-                {p.stack.map((s) => (
-                  <li class="text-[11px] text-gray-400 border border-gray-800 rounded-full px-3 py-1 font-light">{s}</li>
-                ))}
+              <ul class="flex flex-wrap gap-x-4 gap-y-1 mt-7 font-mono text-[12.5px] text-muted" aria-label={t.stack}>
+                {p.stack.map((s) => <li>{s}</li>)}
               </ul>
 
               <div class="mt-8">
@@ -90,13 +78,18 @@ const arrow = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" vi
                     href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="group inline-flex items-center gap-2 text-sm text-white font-medium border-b border-white/50 hover:border-violet-400 hover:text-violet-400 pb-1 transition-colors duration-200"
+                    class="inline-flex items-center gap-2 text-[15px] font-semibold text-ink border-b-2 border-ink hover:text-fucsia-deep hover:border-fucsia-deep pb-0.5 transition-colors duration-200"
                   >
                     {linkLabel}
                     <Fragment set:html={arrow} />
                   </a>
+                ) : p.status === 'wip' ? (
+                  <span class="inline-flex items-center gap-2 text-[13px] font-semibold text-fucsia-deep bg-petal/50 rounded-full px-3 py-1">
+                    <span class="w-1.5 h-1.5 rounded-full bg-fucsia" aria-hidden="true"></span>
+                    {t.wip}
+                  </span>
                 ) : (
-                  <span class="inline-flex items-center gap-2 text-xs text-gray-500 font-light">
+                  <span class="inline-flex items-center gap-2 text-[13px] text-muted">
                     <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
                     {t.private}
                   </span>
@@ -109,18 +102,18 @@ const arrow = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" vi
     </div>
 
     <!-- Más trabajos -->
-    <div data-reveal class="mt-32">
-      <p class="text-xs text-gray-500 tracking-widest uppercase mb-8">{t.moreTitle}</p>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div data-reveal class="mt-32 md:mt-40">
+      <h3 class="text-2xl font-semibold tracking-tight mb-8">{t.moreTitle}</h3>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
         {more.map((p) => {
           const Card = p.link ? 'a' : 'div'
           const attrs = p.link ? { href: p.link, target: '_blank', rel: 'noopener noreferrer' } : {}
           return (
             <Card {...attrs} class="group block">
-              <div class="relative overflow-hidden rounded-xl border border-gray-800/70 bg-black-800 aspect-[16/10]">
+              <div class="overflow-hidden rounded-xl border border-line bg-mist aspect-[16/10]">
                 <img
                   src={p.image}
-                  alt={`${p.name} — ${p[lang].kind}`}
+                  alt={`${p.name}: ${p[lang].kind}`}
                   loading="lazy"
                   decoding="async"
                   class="w-full h-full object-cover object-top motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-[1.03]"
@@ -128,11 +121,11 @@ const arrow = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" vi
               </div>
               <div class="flex items-start justify-between gap-4 mt-4">
                 <div>
-                  <h3 class="text-base font-medium text-white group-hover:text-violet-400 transition-colors">{p.name}</h3>
-                  <p class="text-xs text-gray-500 font-light mt-1">{p[lang].kind}</p>
+                  <p class="text-lg font-semibold tracking-tight group-hover:text-fucsia-deep transition-colors">{p.name}</p>
+                  <p class="font-mono text-[12.5px] text-muted mt-1">{p[lang].kind}</p>
                 </div>
                 {p.link && (
-                  <span class="text-gray-500 group-hover:text-violet-400 transition-colors mt-1">
+                  <span class="text-muted group-hover:text-fucsia-deep transition-colors mt-1.5">
                     <Fragment set:html={arrow} />
                   </span>
                 )}
@@ -147,20 +140,18 @@ const arrow = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" vi
     <div
       id="cv"
       data-reveal
-      class="mt-32 rounded-2xl border border-gray-800/70 bg-black-900 p-8 md:p-12 flex flex-col md:flex-row md:items-center justify-between gap-8"
+      class="mt-28 md:mt-36 rounded-2xl bg-mist border border-line p-8 md:p-12 flex flex-col md:flex-row md:items-center justify-between gap-8"
     >
       <div class="max-w-xl">
-        <h3 class="text-2xl md:text-3xl font-medium text-white tracking-tight">
-          {t.cvTitle1} <span class="font-serif italic font-normal">{t.cvTitle2}</span>
-        </h3>
-        <p class="text-gray-400 font-light mt-3 leading-relaxed">{t.cvText}</p>
+        <h3 class="font-display text-2xl md:text-4xl">{t.cvTitle}</h3>
+        <p class="text-muted mt-4 leading-relaxed">{t.cvText}</p>
       </div>
-      <div class="flex flex-col sm:flex-row md:flex-col lg:flex-row items-start sm:items-center md:items-end lg:items-center gap-5 shrink-0">
+      <div class="flex flex-col sm:flex-row items-start sm:items-center gap-5 shrink-0">
         <a
           href={cvFiles[lang]}
           target="_blank"
           rel="noopener"
-          class="inline-flex items-center gap-3 bg-violet-500 text-white font-medium px-6 py-3 rounded-full hover:bg-violet-400 transition-colors duration-200 text-sm"
+          class="inline-flex items-center gap-2.5 bg-ink text-white font-semibold px-6 py-3 rounded-full hover:bg-fucsia-deep transition-colors duration-200 text-[15px]"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/><path d="M12 18v-6"/><path d="m9 15 3 3 3-3"/></svg>
           {t.cvPrimary}
@@ -170,7 +161,7 @@ const arrow = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" vi
           target="_blank"
           rel="noopener"
           hreflang={otherLang}
-          class="text-sm text-gray-400 hover:text-white border-b border-gray-700 hover:border-violet-400 pb-0.5 transition-colors duration-200"
+          class="text-[15px] font-semibold text-ink border-b-2 border-line hover:border-fucsia-deep hover:text-fucsia-deep pb-0.5 transition-colors duration-200"
         >
           {t.cvSecondary} (PDF)
         </a>

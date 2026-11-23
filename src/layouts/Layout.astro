@@ -93,12 +93,13 @@ const canonical = site + paths[lang]
       gtag('config', 'G-Q8L6EG0YV3');
     </script>
 
-    <!-- Fonts -->
+    <!-- Fonts: Archivo (títulos anchos y texto) + IBM Plex Mono (datos) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <meta name="theme-color" content="#c026d3" />
   </head>
-  <body class="min-h-screen bg-black-950">
+  <body class="min-h-screen bg-paper text-ink">
     <slot />
     <script src="../scripts/scroll-reveal.js"></script>
   </body>

@@ -1,23 +1,38 @@
 @import "tailwindcss";
 
+/*
+  Diseño "molinete fucsia" (nov. 2026).
+  Portada: un bloque fucsia con el molinete del logo (idea de styles/cloudflare-naranja).
+  Resto: blanco con líneas finas. Cierre: noche con puntos (idea de styles/luma-fondo-puntos).
+*/
 @theme {
+  /* Paleta nueva */
+  --color-ink: #1a1320;        /* texto principal */
+  --color-muted: #6e6676;      /* texto secundario */
+  --color-line: #ebe6ee;       /* líneas finas */
+  --color-paper: #ffffff;      /* fondo */
+  --color-mist: #fbf7fc;       /* fondo apenas lila para recuadros */
+  --color-fucsia: #c026d3;     /* el color de la portada */
+  --color-fucsia-deep: #a21caf;/* links sobre blanco (contraste AA) */
+  --color-petal: #f5d0fe;      /* pétalos claros */
+  --color-night: #140e17;      /* cierre oscuro */
+
+  /* Grises y violetas que usa el cierre oscuro */
   --color-black-950: #000000;
   --color-black-900: #0a0a0a;
   --color-black-800: #141414;
-  --color-black-700: #1a1a1a;
-  --color-gray-800: #262626;
-  --color-gray-700: #333333;
-  --color-gray-600: #525252;
-  --color-gray-500: #737373;
-  --color-gray-400: #a3a3a3;
-  --color-gray-300: #d4d4d4;
-  --color-violet-600: #d946ef;
+  --color-gray-800: #2a2430;
+  --color-gray-700: #3a3340;
+  --color-gray-600: #5a5262;
+  --color-gray-500: #8a8292;
+  --color-gray-400: #b3abba;
+  --color-gray-300: #d8d2dc;
   --color-violet-500: #e879f9;
   --color-violet-400: #f0abfc;
-  --color-pink-500: #f472b6;
   --color-pink-400: #f9a8d4;
-  --font-sans: 'Sora', sans-serif;
-  --font-serif: 'Instrument Serif', serif;
+
+  --font-sans: 'Archivo', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
 
 html {
@@ -26,38 +41,60 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background-color: var(--color-black-950);
-  color: #e5e5e5;
+  background-color: var(--color-paper);
+  color: var(--color-ink);
   margin: 0;
+  -webkit-font-smoothing: antialiased;
 }
 
-::-webkit-scrollbar {
-  width: 8px;
+/* Títulos: Archivo ancho y pesado. Es la voz de la marca; se usa solo en títulos. */
+.font-display {
+  font-family: var(--font-sans);
+  font-stretch: 125%;
+  font-weight: 760;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
 }
-::-webkit-scrollbar-track {
-  background: var(--color-black-950);
+
+::selection {
+  background: var(--color-petal);
+  color: var(--color-ink);
 }
-::-webkit-scrollbar-thumb {
-  background: var(--color-gray-700);
+
+:focus-visible {
+  outline: 2px solid var(--color-fucsia);
+  outline-offset: 3px;
   border-radius: 4px;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-violet-500);
+
+/* Textura de puntitos de la portada, que se apaga hacia arriba */
+.dots-texture {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.28) 1px, transparent 1.3px);
+  background-size: 7px 7px;
+  -webkit-mask-image: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0.5) 45%, transparent 85%);
+          mask-image: linear-gradient(to top, #000 0%, rgba(0, 0, 0, 0.5) 45%, transparent 85%);
 }
 
-/* Scroll reveal animations */
+/* Título del cierre con degradé, como en Luma pero con los colores de ICA */
+.text-gradient {
+  background: linear-gradient(90deg, #f0abfc 0%, #e879f9 40%, #f9a8d4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Entrada suave de las secciones (solo en pantallas grandes) */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(12px);
+  transform: translateY(14px);
   transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
 [data-reveal].revealed {
   opacity: 1;
-  transform: translateY(0);
+  transform: none;
 }
 
-/* On mobile: skip animations, show everything immediately */
 @media (max-width: 767px) {
   [data-reveal] {
     opacity: 1;
@@ -66,7 +103,7 @@ body {
   }
 }
 
-/* Reducir movimiento: sin animaciones de entrada ni scroll suave */
+/* Reducir movimiento: sin animaciones de entrada, sin scroll suave y molinete quieto */
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

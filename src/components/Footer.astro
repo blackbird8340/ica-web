@@ -10,20 +10,17 @@ const t = ui[lang]
 const year = new Date().getFullYear()
 ---
 
-<footer class="border-t border-gray-800/30 py-8">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex flex-col md:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-3">
-        <img src="/logo-nuevo.png" alt="ICA" class="h-7" />
-        <span class="text-sm font-semibold text-white tracking-wide">ICA</span>
-        <span class="text-xs text-gray-500 font-light">&copy; {year} ICA · {t.footer.rights}</span>
-      </div>
-      <div class="flex items-center gap-6">
-        <a href="#servicios" class="text-xs text-gray-500 hover:text-white transition-colors font-light">{t.nav.services}</a>
-        <a href="#portfolio" class="text-xs text-gray-500 hover:text-white transition-colors font-light">{t.nav.portfolio}</a>
-        <a href={cvFiles[lang]} target="_blank" rel="noopener" class="text-xs text-gray-500 hover:text-white transition-colors font-light">{t.nav.cv}</a>
-        <a href="#contacto" class="text-xs text-gray-500 hover:text-white transition-colors font-light">{t.nav.contact}</a>
-      </div>
+<footer class="relative">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+    <div class="border-t border-white/10 py-8 flex flex-col md:flex-row md:items-center justify-between gap-5">
+      <nav class="flex flex-wrap items-center gap-x-7 gap-y-2">
+        <span class="font-display text-lg text-white mr-2">ICA</span>
+        <a href="#servicios" class="text-[15px] text-gray-300 hover:text-white transition-colors">{t.nav.services}</a>
+        <a href="#portfolio" class="text-[15px] text-gray-300 hover:text-white transition-colors">{t.nav.portfolio}</a>
+        <a href={cvFiles[lang]} target="_blank" rel="noopener" class="text-[15px] text-gray-300 hover:text-white transition-colors">{t.nav.cv}</a>
+        <a href="https://www.linkedin.com/in/imanol-castro-gamero" target="_blank" rel="noopener noreferrer" class="text-[15px] text-gray-300 hover:text-white transition-colors">LinkedIn</a>
+      </nav>
+      <p class="text-sm text-gray-500">&copy; {year} ICA · {t.footer.rights}</p>
     </div>
   </div>
 </footer>

@@ -1,0 +1,38 @@
+---
+// El molinete del logo de ICA dibujado en SVG: 4 aspas principales y 2 capas detrás,
+// más claras y giradas, como en logo-nuevo.png. Toma el color de `currentColor`.
+interface Props {
+  class?: string
+  layers?: 1 | 2 | 3
+  id?: string
+}
+
+const { class: className, layers = 3, id } = Astro.props
+const blade = 'M0 0 L0 -100 A50 50 0 0 1 0 0 Z'
+const aspas = (key: string) => [0, 90, 180, 270].map((r) => ({ key: `${key}${r}`, r }))
+---
+
+<svg
+  id={id}
+  class={className}
+  viewBox="-110 -110 220 220"
+  fill="currentColor"
+  aria-hidden="true"
+  focusable="false"
+>
+  <g transform="rotate(45)">
+    {layers >= 3 && (
+      <g transform="rotate(40) scale(.9)" opacity=".28">
+        {aspas('c').map((a) => <path d={blade} transform={`rotate(${a.r})`} />)}
+      </g>
+    )}
+    {layers >= 2 && (
+      <g transform="rotate(20) scale(.95)" opacity=".5">
+        {aspas('b').map((a) => <path d={blade} transform={`rotate(${a.r})`} />)}
+      </g>
+    )}
+    <g>
+      {aspas('a').map((a) => <path d={blade} transform={`rotate(${a.r})`} />)}
+    </g>
+  </g>
+</svg>

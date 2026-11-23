@@ -1,5 +1,6 @@
 ---
 import { ui } from '../i18n/ui.js'
+import Molinete from './Molinete.astro'
 
 interface Props {
   lang: 'es' | 'en'
@@ -9,80 +10,70 @@ const { lang } = Astro.props
 const t = ui[lang].hero
 ---
 
-<section class="relative min-h-screen flex items-center overflow-hidden pt-24 pb-16">
-  <!-- Background image with blur -->
+<section class="p-2.5 md:p-3">
   <div
-    class="absolute -inset-24"
-    style="background: url('/hero-gradient.webp') center/cover no-repeat; filter: blur(80px);"
-  ></div>
-  <div class="absolute inset-0 bg-black-950/30"></div>
+    class="relative overflow-hidden rounded-[22px] md:rounded-[28px] min-h-[calc(100svh-20px)] md:min-h-[calc(100svh-24px)] flex flex-col justify-end text-white"
+    style="background: radial-gradient(120% 90% at 85% 100%, #d946ef 0%, #c026d3 45%, #a21caf 100%);"
+  >
+    <!-- Puntitos que se apagan hacia arriba -->
+    <div class="dots-texture absolute inset-0 pointer-events-none"></div>
 
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-    <div class="grid lg:grid-cols-[1fr_auto] gap-16 lg:gap-20 items-center">
-      <!-- Left: Content -->
-      <div>
-        <!-- Label -->
-        <p class="text-xs text-gray-300 tracking-widest uppercase mb-8">
-          {t.label}
-        </p>
-
-        <!-- Headline -->
-        <h1 class="text-4xl sm:text-5xl md:text-7xl text-white leading-[1.1] mb-8 tracking-tight">
-          <span class="font-semibold">{t.title1}</span>
-          <br />
-          <span class="font-serif italic font-normal">{t.title2}</span>
-        </h1>
-
-        <!-- Subtitle -->
-        <p class="text-lg md:text-xl text-gray-400 font-light max-w-xl mb-12 leading-relaxed">
-          {t.subtitle}
-        </p>
-
-        <!-- CTA -->
-        <div class="flex flex-wrap items-center gap-x-8 gap-y-5">
-          <a
-            href="#contacto"
-            class="inline-flex items-center gap-3 bg-violet-500 text-white font-medium px-7 py-3.5 rounded-full hover:bg-violet-400 transition-colors duration-200 text-sm cursor-pointer"
-          >
-            {t.cta}
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
-          </a>
-          <a
-            href="#portfolio"
-            class="text-sm text-white font-medium border-b border-white/50 hover:border-violet-400 hover:text-violet-400 pb-1 transition-colors duration-200"
-          >
-            {t.secondary}
-          </a>
-        </div>
-      </div>
-
-      <!-- Right: Stats (desktop) -->
-      <div class="hidden lg:flex flex-col gap-10 border-l border-gray-800 pl-10">
-        {t.stats.map((st) => (
-          <div>
-            <div class="text-3xl font-light text-white">{st.value}</div>
-            <div class="text-xs text-gray-500 mt-1 font-light tracking-wide">{st.label}</div>
-          </div>
-        ))}
-      </div>
+    <!-- El molinete: gira con el scroll (quieto con "reducir movimiento") -->
+    <div
+      class="absolute pointer-events-none text-white opacity-[.92]
+             w-[72vw] -right-[30vw] top-16
+             sm:w-[62vw] sm:-right-[24vw] sm:top-14
+             lg:w-[52vw] lg:-right-[14vw] lg:top-1/2 lg:-translate-y-[42%]
+             2xl:w-[860px] 2xl:-right-[5vw]"
+    >
+      <Molinete id="hero-molinete" class="w-full h-auto will-change-transform" />
     </div>
 
-    <!-- Stats mobile -->
-    <div class="flex lg:hidden items-start justify-center mt-16 max-w-md mx-auto">
-      {t.stats.map((st, i) => (
-        <Fragment>
-          {i > 0 && <div class="w-px h-10 bg-gray-800 self-center"></div>}
-          <div class="flex-1 text-center px-2">
-            <div class="text-2xl font-light text-white">{st.value}</div>
-            <div class="text-xs text-gray-500 mt-1 font-light tracking-wide">{st.label}</div>
-          </div>
-        </Fragment>
-      ))}
+    <div class="relative z-10 max-w-7xl w-full mx-auto px-5 sm:px-8 lg:px-10 pt-36 pb-12 md:pb-16 lg:pb-20">
+      <h1 class="font-display text-[2.6rem] leading-[1] sm:text-6xl lg:text-[3.6rem] xl:text-[4rem] 2xl:text-[4.7rem] max-w-[11.5em] [text-wrap:balance]">
+        {t.title}
+      </h1>
+      <p class="mt-7 md:mt-9 text-base md:text-xl text-white/90 max-w-[34rem] leading-relaxed">
+        {t.subtitle}
+      </p>
+      <div class="mt-9 md:mt-11 flex flex-wrap items-center gap-x-8 gap-y-5">
+        <a
+          href="#contacto"
+          class="inline-flex items-center gap-3 bg-white text-ink font-semibold px-7 py-3.5 rounded-full hover:bg-petal transition-colors duration-200 text-[15px]"
+        >
+          {t.cta}
+          <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a
+          href="#portfolio"
+          class="text-[15px] font-semibold text-white border-b-2 border-white/50 hover:border-white pb-0.5 transition-colors duration-200"
+        >
+          {t.secondary}
+        </a>
+      </div>
     </div>
-  </div>
-
-  <!-- Scroll indicator (mobile only) -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 lg:hidden z-10 motion-safe:animate-bounce">
-    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="text-gray-400"><path d="m6 9 6 6 6-6"/></svg>
   </div>
 </section>
+
+<script>
+  // El molinete gira según cuánto bajaste. Con "reducir movimiento" queda quieto.
+  const el = document.getElementById('hero-molinete')
+  const quieto = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  if (el && !quieto) {
+    let pendiente = false
+    const girar = () => {
+      el.style.transform = `rotate(${window.scrollY * 0.12}deg)`
+      pendiente = false
+    }
+    window.addEventListener(
+      'scroll',
+      () => {
+        if (!pendiente) {
+          pendiente = true
+          requestAnimationFrame(girar)
+        }
+      },
+      { passive: true }
+    )
+  }
+</script>

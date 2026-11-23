@@ -1,0 +1,32 @@
+---
+import { ui } from '../i18n/ui.js'
+
+interface Props {
+  lang: 'es' | 'en'
+}
+
+const { lang } = Astro.props
+const t = ui[lang].services
+---
+
+<section id="servicios" class="py-28 md:py-40">
+  <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
+    <div data-reveal class="grid lg:grid-cols-12 gap-6 lg:gap-10 mb-14 md:mb-20">
+      <h2 class="font-display text-4xl md:text-6xl lg:col-span-7">{t.title}</h2>
+      <p class="text-muted text-lg leading-relaxed lg:col-span-5 lg:self-end">{t.intro}</p>
+    </div>
+
+    <ul data-reveal class="border-t border-line">
+      {t.items.map((s) => (
+        <li class="grid md:grid-cols-12 gap-2 md:gap-10 py-7 md:py-9 border-b border-line">
+          <h3 class="md:col-span-4 text-2xl md:text-[1.7rem] font-semibold tracking-tight">{s.title}</h3>
+          <p class="md:col-span-5 text-muted leading-relaxed">{s.description}</p>
+          <p class="md:col-span-3 md:text-right font-mono text-[13px] text-muted mt-2 md:mt-1">
+            <span class="sr-only">{t.example}: </span>
+            <span class="text-fucsia-deep">→</span> {s.example}
+          </p>
+        </li>
+      ))}
+    </ul>
+  </div>
+</section>
