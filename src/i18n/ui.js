@@ -40,9 +40,9 @@ export const ui = {
       cta: 'Empezar un proyecto',
       secondary: 'Ver proyectos',
       stats: [
-        { value: '800K+', label: 'Usuarios en 2026' },
-        { value: '175', label: 'Países en App Store' },
+        { value: '5+', label: 'Proyectos' },
         { value: '24/7', label: 'Soporte' },
+        { value: '100%', label: 'Satisfacción' },
       ],
     },
     services: {
@@ -185,9 +185,9 @@ export const ui = {
       cta: 'Start a project',
       secondary: 'See our work',
       stats: [
-        { value: '800K+', label: 'Users in 2026' },
-        { value: '175', label: 'App Store countries' },
+        { value: '5+', label: 'Projects' },
         { value: '24/7', label: 'Support' },
+        { value: '100%', label: 'Satisfaction' },
       ],
     },
     services: {

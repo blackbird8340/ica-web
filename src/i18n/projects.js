@@ -3,6 +3,37 @@
 
 export const featured = [
   {
+    slug: 'conexo-patagonico',
+    name: 'Conexo Patagónico',
+    image: '/projects/conexo-patagonico.webp',
+    imageFit: 'cover',
+    link: { es: 'https://conexopatagonico.com.ar/', en: 'https://conexopatagonico.com.ar/' },
+    linkType: 'site',
+    stack: ['Next.js 16', 'TypeScript', 'MySQL', 'Drizzle', 'Brevo', 'Gemini'],
+    es: {
+      kind: 'Web + panel de gestión · Cliente · 2026',
+      tagline: 'Revista técnica para instaladores y gasistas',
+      summary:
+        'Web nueva que reemplazó su tienda en Tiendanube, y un panel a medida que centraliza todo: subir revistas y planillas de inspección, auspiciantes con informes mes a mes, contactos y envíos de mail con Brevo. La IA pasa las fotos de las planillas a tablas que se buscan por apellido, calle o cuenta. El panel se instala en el celular y está pensado para usuarios de 40 a 80 años.',
+      metrics: [
+        { value: '8.700+', label: 'contactos unificados' },
+        { value: '62 → 94', label: 'velocidad (Lighthouse)' },
+        { value: '–48%', label: 'peso de los PDF' },
+      ],
+    },
+    en: {
+      kind: 'Website + admin panel · Client · 2026',
+      tagline: 'Trade magazine for gas and HVAC installers',
+      summary:
+        'A new website that replaced their Tiendanube store, plus a custom admin panel that brings everything together: magazine issues, inspection schedules, sponsors with monthly reports, contacts and email campaigns through Brevo. AI turns photos of the schedules into tables searchable by name, street or account. The panel installs on a phone and is designed for users aged 40 to 80.',
+      metrics: [
+        { value: '8,700+', label: 'contacts unified' },
+        { value: '62 → 94', label: 'performance (Lighthouse)' },
+        { value: '–48%', label: 'PDF file size' },
+      ],
+    },
+  },
+  {
     slug: 'current-wildfires',
     name: 'Current Wildfires',
     image: '/projects/current-wildfires.webp',
