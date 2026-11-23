@@ -7,7 +7,8 @@ import '../styles/global.css'
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>404 - Página no encontrada | ICA</title>
+    <title>404 - Página no encontrada / Page not found | ICA</title>
+    <meta name="robots" content="noindex" />
     <link rel="icon" href="/logo-nuevo.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -19,7 +20,8 @@ import '../styles/global.css'
         <div class="text-[10rem] font-light leading-none mb-6 text-violet-500">
           404
         </div>
-        <h1 class="text-xl font-medium text-white mb-4">Página no encontrada</h1>
+        <h1 class="text-xl font-medium text-white mb-1">Página no encontrada</h1>
+        <p class="text-sm text-gray-500 font-light mb-4" lang="en">Page not found</p>
         <p class="text-gray-400 font-light mb-10 leading-relaxed text-sm">
           La página que buscás no existe o fue movida. Pero no te preocupes, podemos ayudarte.
         </p>
@@ -30,6 +32,9 @@ import '../styles/global.css'
           Volver al inicio
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="group-hover:translate-x-1 transition-transform"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
         </a>
+        <div class="mt-6">
+          <a href="/en/" lang="en" class="text-xs text-gray-500 hover:text-violet-400 tracking-widest uppercase transition-colors">Back to home (English)</a>
+        </div>
       </div>
     </div>
   </body>

@@ -5,7 +5,22 @@ import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
   site: 'https://icaweb.dev',
-  integrations: [react(), sitemap()],
+  trailingSlash: 'ignore',
+  i18n: {
+    defaultLocale: 'es',
+    locales: ['es', 'en'],
+    routing: { prefixDefaultLocale: false },
+  },
+  integrations: [
+    react(),
+    sitemap({
+      filter: (page) => !page.includes('/404'),
+      i18n: {
+        defaultLocale: 'es',
+        locales: { es: 'es-AR', en: 'en' },
+      },
+    }),
+  ],
   vite: {
     plugins: [tailwindcss()],
   },

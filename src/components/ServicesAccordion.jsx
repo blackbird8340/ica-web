@@ -1,34 +1,13 @@
 import { useState } from "react";
 import { ChevronDown, Layout, Globe, Settings, Wrench } from "lucide-react";
 
-const services = [
-  {
-    title: "Landing Pages",
-    description:
-      "Páginas de aterrizaje optimizadas para convertir visitantes en clientes. Diseño atractivo, carga ultra rápida y enfocadas en resultados.",
-    icon: Layout,
-  },
-  {
-    title: "Sitios Corporativos",
-    description:
-      "Sitios web completos y profesionales que comunican la identidad de tu marca. Responsive, modernos y preparados para escalar.",
-    icon: Globe,
-  },
-  {
-    title: "Sistemas a Medida",
-    description:
-      "Soluciones personalizadas: facturación, gestión de stock, administración. Todo lo que tu negocio necesite, hecho a medida.",
-    icon: Settings,
-  },
-  {
-    title: "Mantenimiento",
-    description:
-      "Hosting, actualizaciones y soporte continuo para que tu sitio esté siempre funcionando perfecto y protegido.",
-    icon: Wrench,
-  },
-];
+import { ui } from "../i18n/ui.js";
 
-export default function ServicesAccordion() {
+const icons = [Layout, Globe, Settings, Wrench];
+
+export default function ServicesAccordion({ lang = "es" }) {
+  const t = ui[lang].services;
+  const services = t.items.map((item, i) => ({ ...item, icon: icons[i] }));
   const [activeIndex, setActiveIndex] = useState(0);
 
   const ActiveIcon = services[activeIndex >= 0 ? activeIndex : 0].icon;
@@ -39,15 +18,14 @@ export default function ServicesAccordion() {
         {/* Header */}
         <div data-reveal className="mb-20">
           <p className="text-xs text-gray-500 tracking-widest uppercase mb-4">
-            Servicios
+            {t.label}
           </p>
           <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight">
-            Lo que{" "}
-            <span className="font-serif italic font-normal">hacemos</span>
+            {t.title1}{" "}
+            <span className="font-serif italic font-normal">{t.title2}</span>
           </h2>
           <p className="text-gray-400 font-light mt-4 max-w-2xl">
-            Desde una landing page hasta un sistema completo de gestión, nos
-            adaptamos a lo que tu negocio necesita.
+            {t.intro}
           </p>
         </div>
 
@@ -66,6 +44,7 @@ export default function ServicesAccordion() {
                       setActiveIndex(activeIndex === index ? -1 : index)
                     }
                     className="w-full flex items-center justify-between py-6 text-left cursor-pointer group"
+                    aria-expanded={activeIndex === index}
                   >
                     <div className="flex items-center gap-4">
                       <Icon

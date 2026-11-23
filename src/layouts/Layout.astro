@@ -1,28 +1,32 @@
 ---
+import { ui, paths } from '../i18n/ui.js'
+
 interface Props {
-  title?: string
-  description?: string
+  lang?: 'es' | 'en'
 }
 
-const {
-  title = 'ICA | Desarrollo Web & Soluciones Digitales',
-  description = 'Diseñamos y desarrollamos sitios web, landing pages y sistemas a medida para negocios y empresas. Páginas rápidas, modernas y que generan resultados. Contactanos.',
-} = Astro.props
+const { lang = 'es' } = Astro.props
+const m = ui[lang].meta
+const site = 'https://icaweb.dev'
+const canonical = site + paths[lang]
 ---
 
 <!doctype html>
-<html lang="es">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <!-- SEO Primary -->
-    <title>{title}</title>
-    <meta name="description" content={description} />
-    <meta name="keywords" content="desarrollo web, diseño web, landing page, sistema a medida, páginas web, Argentina, agencia digital, programación web, sitios web" />
+    <title>{m.title}</title>
+    <meta name="description" content={m.description} />
+    <meta name="keywords" content={m.keywords} />
     <meta name="author" content="Imanol Castro - ICA" />
     <meta name="robots" content="index, follow" />
-    <link rel="canonical" href="https://icaweb.dev/" />
+    <link rel="canonical" href={canonical} />
+    <link rel="alternate" hreflang="es" href={site + paths.es} />
+    <link rel="alternate" hreflang="en" href={site + paths.en} />
+    <link rel="alternate" hreflang="x-default" href={site + paths.es} />
 
     <!-- Favicon -->
     <link rel="icon" href="/logo-nuevo.png" />
@@ -30,17 +34,18 @@ const {
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content={title} />
-    <meta property="og:description" content="Diseñamos y desarrollamos sitios web, landing pages y sistemas a medida para negocios y empresas." />
+    <meta property="og:title" content={m.title} />
+    <meta property="og:description" content={m.description} />
     <meta property="og:image" content="https://icaweb.dev/logo-nuevo.png" />
-    <meta property="og:url" content="https://icaweb.dev/" />
-    <meta property="og:locale" content="es_AR" />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:locale" content={m.ogLocale} />
+    <meta property="og:locale:alternate" content={lang === 'es' ? ui.en.meta.ogLocale : ui.es.meta.ogLocale} />
     <meta property="og:site_name" content="ICA" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={title} />
-    <meta name="twitter:description" content="Diseñamos y desarrollamos sitios web, landing pages y sistemas a medida para negocios y empresas." />
+    <meta name="twitter:title" content={m.title} />
+    <meta name="twitter:description" content={m.description} />
     <meta name="twitter:image" content="https://icaweb.dev/logo-nuevo.png" />
 
     <!-- Geo Tags (SEO local) -->
@@ -52,8 +57,9 @@ const {
       "@context": "https://schema.org",
       "@type": "ProfessionalService",
       "name": "ICA - Imanol Castro",
-      "description": "Desarrollo web, landing pages y sistemas a medida para negocios y empresas en Argentina.",
-      "url": "https://icaweb.dev",
+      "description": m.description,
+      "inLanguage": lang,
+      "url": canonical,
       "logo": "https://icaweb.dev/logo-nuevo.png",
       "image": "https://icaweb.dev/logo-nuevo.png",
       "telephone": "+542942553671",
@@ -71,7 +77,8 @@ const {
       "founder": {
         "@type": "Person",
         "name": "Imanol Castro",
-        "jobTitle": "Técnico Superior en Diseño y Programación Web"
+        "jobTitle": lang === 'es' ? "Desarrollador Full-Stack" : "Full-Stack Developer",
+        "sameAs": ["https://www.linkedin.com/in/imanol-castro-gamero"]
       },
       "serviceType": ["Desarrollo Web", "Landing Pages", "Sistemas a Medida", "Mantenimiento Web"],
       "priceRange": "$$"

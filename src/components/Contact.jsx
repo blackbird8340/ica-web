@@ -8,10 +8,12 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { useState } from "react";
+import { ui } from "../i18n/ui.js";
 
 const WEB3FORMS_KEY = "489dc59c-252d-4dfd-8080-1f7e57748ff6";
 
-export default function Contact() {
+export default function Contact({ lang = "es" }) {
+  const t = ui[lang].contact;
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -29,7 +31,7 @@ export default function Contact() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           access_key: WEB3FORMS_KEY,
-          subject: `Nuevo mensaje de ${formData.name} - ICA Web`,
+          subject: `${t.subject} ${formData.name} - ICA Web`,
           from_name: formData.name,
           ...formData,
         }),
@@ -59,14 +61,14 @@ export default function Contact() {
         {/* Header */}
         <div className="mb-20">
           <p className="text-xs text-gray-500 tracking-widest uppercase mb-4">
-            Contacto
+            {t.label}
           </p>
           <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight">
-            Empecemos tu{" "}
-            <span className="font-serif italic font-normal">proyecto</span>
+            {t.title1}{" "}
+            <span className="font-serif italic font-normal">{t.title2}</span>
           </h2>
           <p className="text-gray-400 font-light mt-4 max-w-2xl">
-            Contanos tu idea y te respondemos en menos de 24 horas.
+            {t.intro}
           </p>
         </div>
 
@@ -82,7 +84,7 @@ export default function Contact() {
               <MessageCircle size={20} className="text-gray-500 group-hover:text-green-400 transition-colors" />
               <div>
                 <div className="text-white font-medium text-sm">WhatsApp</div>
-                <div className="text-gray-500 text-xs font-light">Respuesta inmediata</div>
+                <div className="text-gray-500 text-xs font-light">{t.whatsappHint}</div>
               </div>
             </a>
 
@@ -93,7 +95,7 @@ export default function Contact() {
               <Mail size={20} className="text-gray-500 group-hover:text-violet-400 transition-colors" />
               <div>
                 <div className="text-white font-medium text-sm">contacto@icaweb.dev</div>
-                <div className="text-gray-500 text-xs font-light">Email</div>
+                <div className="text-gray-500 text-xs font-light">{t.emailHint}</div>
               </div>
             </a>
 
@@ -104,7 +106,7 @@ export default function Contact() {
               <Phone size={20} className="text-gray-500 group-hover:text-violet-400 transition-colors" />
               <div>
                 <div className="text-white font-medium text-sm">+54 2942 553671</div>
-                <div className="text-gray-500 text-xs font-light">Teléfono</div>
+                <div className="text-gray-500 text-xs font-light">{t.phoneHint}</div>
               </div>
             </a>
 
@@ -112,7 +114,7 @@ export default function Contact() {
               <MapPin size={20} className="text-gray-500" />
               <div>
                 <div className="text-white font-medium text-sm">Buenos Aires, AR</div>
-                <div className="text-gray-500 text-xs font-light">Ubicación</div>
+                <div className="text-gray-500 text-xs font-light">{t.locationHint}</div>
               </div>
             </div>
           </div>
@@ -120,41 +122,44 @@ export default function Contact() {
           {/* Form */}
           <form onSubmit={handleSubmit} className="space-y-8">
             <div>
-              <label className="text-xs text-gray-500 tracking-wide mb-3 block font-light">Nombre</label>
+              <label className="text-xs text-gray-500 tracking-wide mb-3 block font-light" htmlFor="contact-name">{t.name}</label>
               <input
                 type="text"
+                id="contact-name"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
                 required
                 className="w-full bg-transparent border-0 border-b border-gray-800 px-0 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-violet-500/50 transition-colors font-light"
-                placeholder="Tu nombre"
+                placeholder={t.namePlaceholder}
               />
             </div>
             <div>
-              <label className="text-xs text-gray-500 tracking-wide mb-3 block font-light">Email</label>
+              <label className="text-xs text-gray-500 tracking-wide mb-3 block font-light" htmlFor="contact-email">{t.email}</label>
               <input
                 type="email"
+                id="contact-email"
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
                 required
                 className="w-full bg-transparent border-0 border-b border-gray-800 px-0 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-violet-500/50 transition-colors font-light"
-                placeholder="tu@email.com"
+                placeholder={t.emailPlaceholder}
               />
             </div>
             <div>
-              <label className="text-xs text-gray-500 tracking-wide mb-3 block font-light">
-                Mensaje
+              <label className="text-xs text-gray-500 tracking-wide mb-3 block font-light" htmlFor="contact-message">
+                {t.message}
               </label>
               <textarea
+                id="contact-message"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
                 required
                 rows={4}
                 className="w-full bg-transparent border-0 border-b border-gray-800 px-0 py-3 text-white placeholder-gray-600 focus:outline-none focus:border-violet-500/50 transition-colors resize-none font-light"
-                placeholder="Contanos sobre tu proyecto..."
+                placeholder={t.messagePlaceholder}
               />
             </div>
 
@@ -162,13 +167,13 @@ export default function Contact() {
             {status === "success" && (
               <div className="flex items-center gap-2 text-green-400 text-sm font-light">
                 <CheckCircle size={16} />
-                <span>Mensaje enviado correctamente. Te responderemos pronto.</span>
+                <span>{t.success}</span>
               </div>
             )}
             {status === "error" && (
               <div className="flex items-center gap-2 text-red-400 text-sm font-light">
                 <AlertCircle size={16} />
-                <span>Error al enviar. Intentá por WhatsApp o email directo.</span>
+                <span>{t.error}</span>
               </div>
             )}
 
@@ -177,7 +182,7 @@ export default function Contact() {
               disabled={status === "loading"}
               className="group flex items-center gap-2 text-white font-medium border-b border-white/60 hover:border-violet-400 pb-1 transition-all duration-200 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              {status === "loading" ? "Enviando..." : "Enviar mensaje"}
+              {status === "loading" ? t.sending : t.send}
               <Send size={15} className="group-hover:translate-x-0.5 transition-transform" />
             </button>
           </form>

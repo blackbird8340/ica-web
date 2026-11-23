@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro'
+import '../styles/global.css'
+
+import Navbar from './Navbar.jsx'
+import Hero from './Hero.astro'
+import ServicesAccordion from './ServicesAccordion.jsx'
+import Portfolio from './Portfolio.astro'
+import Process from './Process.astro'
+import CTA from './CTA.astro'
+import Contact from './Contact.jsx'
+import Footer from './Footer.astro'
+import WhatsAppButton from './WhatsAppButton.astro'
+
+interface Props {
+  lang: 'es' | 'en'
+}
+
+const { lang } = Astro.props
+---
+
+<Layout lang={lang}>
+  <Navbar client:load lang={lang} />
+  <Hero lang={lang} />
+  <ServicesAccordion client:visible lang={lang} />
+  <Portfolio lang={lang} />
+  <Process lang={lang} />
+  <CTA lang={lang} />
+  <Contact client:visible lang={lang} />
+  <Footer lang={lang} />
+  <WhatsAppButton lang={lang} />
+</Layout>
