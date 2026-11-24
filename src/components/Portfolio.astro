@@ -13,15 +13,15 @@ const otherLang = lang === 'es' ? 'en' : 'es'
 const arrow = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7"/><path d="M7 7h10v10"/></svg>`
 ---
 
-<section id="portfolio" class="py-20 md:py-28 border-t border-line">
+<section id="portfolio" class="py-14 md:py-24 border-t border-line">
   <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
-    <div data-reveal class="grid lg:grid-cols-12 gap-6 lg:gap-10 mb-12 md:mb-16">
+    <div data-reveal class="grid lg:grid-cols-12 gap-6 lg:gap-10 mb-10 md:mb-14">
       <h2 class="font-display text-4xl md:text-6xl lg:col-span-7">{t.title}</h2>
       <p class="text-muted text-lg leading-relaxed lg:col-span-5 lg:self-end">{t.intro}</p>
     </div>
 
     <!-- Casos destacados -->
-    <div class="space-y-20 md:space-y-28">
+    <div class="space-y-16 md:space-y-24">
       {featured.map((p, i) => {
         const c = p[lang]
         const href = p.link ? p.link[lang] : null
@@ -120,7 +120,7 @@ const arrow = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" vi
     </div>
 
     <!-- Más trabajos -->
-    <div data-reveal class="mt-24 md:mt-28">
+    <div data-reveal class="mt-20 md:mt-24">
       <h3 class="text-2xl font-semibold tracking-tight mb-8">{t.moreTitle}</h3>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
         {more.map((p) => {
@@ -158,7 +158,7 @@ const arrow = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" vi
     <div
       id="cv"
       data-reveal
-      class="mt-20 md:mt-24 rounded-2xl bg-mist border border-line p-8 md:p-12 flex flex-col md:flex-row md:items-center justify-between gap-8"
+      class="mt-16 md:mt-20 rounded-2xl bg-mist border border-line p-8 md:p-12 flex flex-col md:flex-row md:items-center justify-between gap-8"
     >
       <div class="max-w-xl">
         <h3 class="font-display text-2xl md:text-4xl">{t.cvTitle}</h3>
