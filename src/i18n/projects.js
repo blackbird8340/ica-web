@@ -104,6 +104,39 @@ export const featured = [
     },
   },
   {
+    slug: 'la-rueda',
+    name: 'La Rueda',
+    image: '/projects/la-rueda-grafico.webp',
+    imageFit: 'cover',
+    // Captura chica encima: el screener
+    inset: { src: '/projects/la-rueda-screener.webp', es: 'Screener de acciones', en: 'Stock screener' },
+    link: null,
+    status: 'wip',
+    stack: ['Python', 'pandas', 'SQLite', 'JavaScript', 'Claude API'],
+    es: {
+      kind: 'Producto · En desarrollo · 2026',
+      tagline: 'Terminal de mercados en español',
+      summary:
+        'Una terminal al estilo de las profesionales, con foco en Argentina y Estados Unidos. Junta datos públicos de acciones, bonos, futuros y economía, analiza cada día miles de acciones con un screener propio y suma LA RUEDA IA para hacerle preguntas en lenguaje natural.',
+      metrics: [
+        { value: '3.900+', label: 'acciones de EE.UU. analizadas cada día' },
+        { value: '9', label: 'pantallas de renta fija argentina' },
+        { value: '44', label: 'mercados en el mapa mundial' },
+      ],
+    },
+    en: {
+      kind: 'Product · In development · 2026',
+      tagline: 'A markets terminal in Spanish',
+      summary:
+        'A terminal in the style of professional ones, focused on Argentina and the United States. It brings together public data on stocks, bonds, futures and the economy, analyzes thousands of stocks every day with its own screener, and adds LA RUEDA IA to ask questions in plain language.',
+      metrics: [
+        { value: '3,900+', label: 'US stocks analyzed every day' },
+        { value: '9', label: 'Argentine fixed-income screens' },
+        { value: '44', label: 'markets on the world map' },
+      ],
+    },
+  },
+  {
     slug: 'ferreteria-chacon',
     name: 'Ferretería Chacón',
     image: '/projects/ferreteria-lista-ia.webp',
