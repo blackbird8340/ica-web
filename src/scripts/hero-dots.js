@@ -1,9 +1,8 @@
-// Puntitos "vivos" de la portada fucsia.
-// - Los puntos se mecen apenas (se corren 2-3 px), como un campo con viento.
-// - Una ola de brillo los recorre en diagonal.
-// - Algunos titilan solos y crecen un poco cuando brillan.
-// Con "reducir movimiento" se dibuja una sola vez, quieto. Se pausa cuando la portada no está en pantalla.
-// Es liviano: ~3.000 puntos en celular y ~15.000 en una pantalla grande, dibujados como cuadraditos.
+// Puntitos de la portada fucsia, en la línea del cierre oscuro (styles/luma-fondo-puntos):
+// un mapa de puntitos blancos quietos, con forma de "continentes" inventados, y algunos puntos
+// en blanco y rosas claros que se prenden y apagan. Sin olas ni movimiento del fondo.
+// Con "reducir movimiento" queda quieto. Se pausa cuando la portada no está en pantalla.
+// Liviano: los puntos quietos se dibujan una sola vez; en cada cuadro solo se redibujan los que titilan.
 const lienzo = document.querySelector('[data-hero-dots]')
 if (lienzo) {
   const ctx = lienzo.getContext('2d')
@@ -11,63 +10,76 @@ if (lienzo) {
   const fallback = document.querySelector('[data-hero-dots-fallback]')
   if (fallback) fallback.style.display = 'none'
 
-  // Cuánto se mueve todo. Si querés más o menos movimiento, tocá estos números.
-  const VAIVEN = 2.4 // px que se corre cada punto
-  const VELOCIDAD_OLA = 2.1 // qué tan rápido pasa la ola de brillo
-  const CHISPAS = 0.07 // proporción de puntos que titilan solos
-
-  let paso = 9
-  let puntos = []
-  let w = 0, h = 0
-  let visible = true
-  let corriendo = false
+  // Para ajustar: cuántos titilan y qué tan rápido
+  const CHISPAS = 0.09 // proporción de puntos que titilan
+  const RAPIDEZ = [0.9, 2.6] // velocidad mínima y máxima del titileo
+  const COLORES = ['255,255,255', '253,232,255', '251,207,232'] // blanco, lila muy claro, rosa claro
+  const PASO = 12
+  const RADIO = 1.2
 
   const azar = (x, y) => {
     const s = Math.sin(x * 127.1 + y * 311.7) * 43758.5453
     return s - Math.floor(s)
   }
+  const suave = (t) => t * t * (3 - 2 * t)
+  const ruido = (x, y) => {
+    const xi = Math.floor(x), yi = Math.floor(y)
+    const xf = suave(x - xi), yf = suave(y - yi)
+    const a = azar(xi, yi), b = azar(xi + 1, yi), c = azar(xi, yi + 1), d = azar(xi + 1, yi + 1)
+    return a + (b - a) * xf + (c - a) * yf + (a - b - c + d) * xf * yf
+  }
+  // Semilla distinta a la del footer, para que el dibujo no sea igual
+  const tierra = (x, y) => ruido(x * 0.0055 + 40, y * 0.0055 + 13) * 0.65 + ruido(x * 0.017 + 7, y * 0.017 + 3) * 0.35
+
+  const capa = document.createElement('canvas') // puntos quietos, dibujados una vez
+  const cctx = capa.getContext('2d')
+  let chispas = []
+  let w = 0, h = 0, dpr = 1
+  let visible = true
+  let corriendo = false
 
   function armar() {
-    const dpr = Math.min(devicePixelRatio || 1, 2)
+    dpr = Math.min(devicePixelRatio || 1, 2)
     w = lienzo.clientWidth
     h = lienzo.clientHeight
-    lienzo.width = Math.round(w * dpr)
-    lienzo.height = Math.round(h * dpr)
+    for (const c of [lienzo, capa]) {
+      c.width = Math.round(w * dpr)
+      c.height = Math.round(h * dpr)
+    }
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-    paso = w < 640 ? 11 : 9
-    puntos = []
-    for (let y = paso / 2; y < h; y += paso)
-      for (let x = paso / 2; x < w; x += paso) {
-        // Más presentes abajo, se apagan hacia arriba
-        const base = Math.max(0, Math.min(1, (y / h - 0.1) / 0.72))
-        if (base <= 0.02) continue
-        const r = azar(x, y)
-        puntos.push({ x, y, base, chispa: r < CHISPAS, fase: r * 900, vel: 1.2 + azar(y, x) * 2.2 })
+    cctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+    cctx.clearRect(0, 0, w, h)
+    cctx.fillStyle = 'rgba(255,255,255,0.2)'
+    chispas = []
+    for (let y = PASO / 2; y < h; y += PASO)
+      for (let x = PASO / 2; x < w; x += PASO) {
+        if (tierra(x, y) < 0.5) continue
+        if (azar(x * 0.37, y * 0.91) < CHISPAS) {
+          chispas.push({
+            x, y,
+            color: COLORES[Math.floor(azar(y, x) * COLORES.length)],
+            fase: azar(x, y * 3) * Math.PI * 2,
+            vel: RAPIDEZ[0] + azar(y * 2, x) * (RAPIDEZ[1] - RAPIDEZ[0]),
+          })
+        } else {
+          cctx.beginPath()
+          cctx.arc(x, y, RADIO, 0, Math.PI * 2)
+          cctx.fill()
+        }
       }
   }
 
   function dibujar(t) {
-    ctx.clearRect(0, 0, w, h)
     const s = t / 1000
-    for (const p of puntos) {
-      // Vaivén: cada fila y columna se mece con un desfase distinto
-      const x = p.x + Math.sin(p.y * 0.021 + s * 1.3) * VAIVEN
-      const y = p.y + Math.cos(p.x * 0.017 + s * 1.1) * VAIVEN
-
-      // Ola de brillo en diagonal
-      const ola = 0.5 + 0.5 * Math.sin(p.x * 0.010 + p.y * 0.014 - s * VELOCIDAD_OLA)
-      let a = p.base * (0.06 + 0.5 * ola * ola)
-      let lado = 1.5
-
-      if (p.chispa) {
-        const brillo = 0.5 + 0.5 * Math.sin(s * p.vel + p.fase)
-        const b = brillo * brillo
-        a = Math.max(a, (0.2 + 0.8 * p.base) * (0.15 + 0.85 * b))
-        lado = 1.5 + b * 1.1
-      }
-      if (a < 0.03) continue
-      ctx.fillStyle = `rgba(255,255,255,${a.toFixed(3)})`
-      ctx.fillRect(x - lado / 2, y - lado / 2, lado, lado)
+    ctx.clearRect(0, 0, w, h)
+    ctx.drawImage(capa, 0, 0, w, h)
+    for (const p of chispas) {
+      const b = quieto ? 0.6 : 0.5 + 0.5 * Math.sin(s * p.vel + p.fase)
+      const brillo = 0.2 + 0.78 * b * b
+      ctx.fillStyle = `rgba(${p.color},${brillo.toFixed(3)})`
+      ctx.beginPath()
+      ctx.arc(p.x, p.y, RADIO + b * 0.7, 0, Math.PI * 2)
+      ctx.fill()
     }
     if (!quieto && visible) requestAnimationFrame(dibujar)
     else corriendo = false
