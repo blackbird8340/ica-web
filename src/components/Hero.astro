@@ -15,8 +15,10 @@ const t = ui[lang].hero
     class="relative overflow-hidden rounded-[22px] md:rounded-[28px] min-h-[calc(100svh-20px)] md:min-h-[calc(100svh-24px)] flex flex-col justify-end text-white"
     style="background: radial-gradient(120% 90% at 85% 100%, #d946ef 0%, #c026d3 45%, #a21caf 100%);"
   >
-    <!-- Puntitos que se apagan hacia arriba -->
-    <div class="dots-texture absolute inset-0 pointer-events-none"></div>
+    <!-- Puntitos vivos: una ola de brillo los recorre y reaccionan al mouse (ver scripts/hero-dots.js).
+         Sin JavaScript queda la textura quieta de CSS. -->
+    <div class="dots-texture absolute inset-0 pointer-events-none" data-hero-dots-fallback></div>
+    <canvas data-hero-dots aria-hidden="true" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
 
     <!-- El molinete: gira con el scroll (quieto con "reducir movimiento") -->
     <div
@@ -77,3 +79,5 @@ const t = ui[lang].hero
     )
   }
 </script>
+
+<script src="../scripts/hero-dots.js"></script>

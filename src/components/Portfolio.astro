@@ -33,25 +33,43 @@ const arrow = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" vi
           : {}
         return (
           <article data-reveal class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-center">
-            <Frame
-              {...frameAttrs}
-              class:list={[
-                'group block relative overflow-hidden rounded-2xl border border-line bg-mist aspect-[16/10] lg:col-span-7',
-                flip && 'lg:order-2',
-              ]}
-              style={p.imageBg ? `background:${p.imageBg}` : undefined}
-            >
-              <img
-                src={p.image}
-                alt={`${p.name}: ${c.tagline}`}
-                loading="lazy"
-                decoding="async"
-                class:list={[
-                  'w-full h-full motion-safe:transition-transform motion-safe:duration-700 motion-safe:group-hover:scale-[1.02]',
-                  p.imageFit === 'contain' ? 'object-contain object-center' : 'object-cover object-top',
-                ]}
-              />
-            </Frame>
+            <figure class:list={['lg:col-span-7', flip && 'lg:order-2']}>
+              <div class:list={['relative', p.inset && 'pb-10 sm:pb-12']}>
+              <Frame
+                {...frameAttrs}
+                class="group block relative overflow-hidden rounded-2xl border border-line bg-mist aspect-[16/10]"
+                style={p.imageBg ? `background:${p.imageBg}` : undefined}
+              >
+                <img
+                  src={p.image}
+                  alt={`${p.name}: ${c.tagline}`}
+                  loading="lazy"
+                  decoding="async"
+                  class:list={[
+                    'w-full h-full motion-safe:transition-transform motion-safe:duration-700 motion-safe:group-hover:scale-[1.02]',
+                    p.imageFit === 'contain' ? 'object-contain object-center' : 'object-cover object-top',
+                  ]}
+                />
+              </Frame>
+              {p.inset && (
+                <img
+                  src={p.inset.src}
+                  alt={`${p.name}: ${p.inset[lang]}`}
+                  loading="lazy"
+                  decoding="async"
+                  class:list={[
+                    'absolute bottom-0 w-[44%] sm:w-[38%] aspect-[16/10] object-cover object-top rounded-xl border border-line bg-white shadow-[0_18px_40px_-12px_rgba(26,19,32,.35)]',
+                    flip ? 'left-3 lg:left-[-3%]' : 'right-3 lg:right-[-3%]',
+                  ]}
+                />
+              )}
+              </div>
+              {p.demo && (
+                <figcaption class="font-mono text-[11.5px] text-muted mt-3">
+                  {t.demo}
+                </figcaption>
+              )}
+            </figure>
 
             <div class:list={['lg:col-span-5', flip && 'lg:order-1']}>
               <p class="font-mono text-[12.5px] text-muted">{c.kind}</p>

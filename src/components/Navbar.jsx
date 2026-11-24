@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { Menu, X, FileText } from "lucide-react";
 import { ui, paths, cvFiles } from "../i18n/ui.js";
 
@@ -33,6 +33,49 @@ export default function Navbar({ lang = "es" }) {
     { href: "#proceso", label: t.process },
     { href: "#contacto", label: t.contact },
   ];
+
+  // Sección en pantalla (para marcarla en el menú) y la píldora que se desliza
+  const [active, setActive] = useState(null);
+  const [hovered, setHovered] = useState(null);
+  const [pill, setPill] = useState({ left: 0, width: 0, visible: false });
+  const linksRef = useRef(null);
+  const itemRefs = useRef({});
+
+  useEffect(() => {
+    const ids = ["servicios", "portfolio", "proceso", "contacto"];
+    const els = ids.map((id) => document.getElementById(id)).filter(Boolean);
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setActive("#" + e.target.id);
+        });
+      },
+      { rootMargin: "-45% 0px -50% 0px" }
+    );
+    els.forEach((el) => io.observe(el));
+    const onTop = () => window.scrollY < 200 && setActive(null);
+    window.addEventListener("scroll", onTop, { passive: true });
+    return () => {
+      io.disconnect();
+      window.removeEventListener("scroll", onTop);
+    };
+  }, []);
+
+  const target = hovered ?? active;
+  const movePill = useCallback(() => {
+    const el = target && itemRefs.current[target];
+    const box = linksRef.current;
+    if (!el || !box) return setPill((p) => ({ ...p, visible: false }));
+    const a = el.getBoundingClientRect();
+    const b = box.getBoundingClientRect();
+    setPill({ left: a.left - b.left, width: a.width, visible: true });
+  }, [target]);
+
+  useEffect(() => {
+    movePill();
+    window.addEventListener("resize", movePill);
+    return () => window.removeEventListener("resize", movePill);
+  }, [movePill]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -76,12 +119,38 @@ export default function Navbar({ lang = "es" }) {
             <span className="font-display text-lg leading-none">ICA</span>
           </a>
 
-          <div className="hidden md:flex items-center gap-9">
-            {navLinks.map((link) => (
-              <a key={link.href} href={link.href} className={`text-[15px] font-medium ${soft} transition-colors duration-200`}>
-                {link.label}
-              </a>
-            ))}
+          <div
+            ref={linksRef}
+            onMouseLeave={() => setHovered(null)}
+            className="hidden md:flex items-center gap-1 relative"
+          >
+            {/* Píldora que sigue al mouse y, si no, marca la sección en pantalla */}
+            <span
+              aria-hidden="true"
+              className={`absolute top-1/2 -translate-y-1/2 h-9 rounded-full transition-all duration-300 ease-[cubic-bezier(.2,.8,.2,1)] motion-reduce:transition-none ${
+                solid ? "bg-petal/60" : "bg-white/18"
+              } ${pill.visible ? "opacity-100" : "opacity-0"}`}
+              style={{ left: pill.left, width: pill.width }}
+            />
+            {navLinks.map((link) => {
+              const on = target === link.href;
+              return (
+                <a
+                  key={link.href}
+                  ref={(el) => (itemRefs.current[link.href] = el)}
+                  href={link.href}
+                  onMouseEnter={() => setHovered(link.href)}
+                  onFocus={() => setHovered(link.href)}
+                  onBlur={() => setHovered(null)}
+                  aria-current={active === link.href ? "location" : undefined}
+                  className={`relative z-10 px-4 py-2 rounded-full text-[15px] font-medium transition-colors duration-200 ${
+                    on ? (solid ? "text-fucsia-deep" : "text-white") : solid ? "text-muted hover:text-ink" : "text-white/80"
+                  }`}
+                >
+                  {link.label}
+                </a>
+              );
+            })}
           </div>
 
           <div className="hidden md:flex items-center gap-6">
@@ -121,7 +190,10 @@ export default function Navbar({ lang = "es" }) {
                   key={link.href}
                   href={link.href}
                   onClick={() => setIsOpen(false)}
-                  className="text-ink text-lg font-medium py-2"
+                  aria-current={active === link.href ? "location" : undefined}
+                  className={`text-lg font-medium py-3 px-3 -mx-3 rounded-xl transition-colors active:bg-petal/60 ${
+                    active === link.href ? "text-fucsia-deep bg-petal/40" : "text-ink"
+                  }`}
                 >
                   {link.label}
                 </a>

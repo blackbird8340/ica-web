@@ -1,12 +1,16 @@
 // Proyectos del portfolio. Los datos salen del CV (nov. 2026).
 // `featured`: casos grandes con resultados. `more`: grilla chica de abajo.
+// `inset`: captura chica que va encima de la grande. `demo`: las capturas usan datos inventados.
 
 export const featured = [
   {
     slug: 'conexo-patagonico',
     name: 'Conexo Patagónico',
-    image: '/projects/conexo-patagonico.webp',
+    image: '/projects/conexo-panel-revistas.webp',
     imageFit: 'cover',
+    // Captura chica encima: la web pública
+    inset: { src: '/projects/conexo-patagonico.webp', es: 'La web pública', en: 'The public website' },
+    demo: true,
     link: { es: 'https://conexopatagonico.com.ar/', en: 'https://conexopatagonico.com.ar/' },
     linkType: 'site',
     stack: ['Next.js 16', 'TypeScript', 'MySQL', 'Drizzle', 'Brevo', 'Gemini'],
@@ -102,8 +106,11 @@ export const featured = [
   {
     slug: 'ferreteria-chacon',
     name: 'Ferretería Chacón',
-    image: '/projects/ferreteria-chacon.webp',
+    image: '/projects/ferreteria-lista-ia.webp',
     imageFit: 'cover',
+    // Captura chica encima: una Factura A
+    inset: { src: '/projects/ferreteria-factura.webp', es: 'Factura A con CAE y QR', en: 'Type A invoice with CAE and QR' },
+    demo: true,
     link: null,
     stack: ['React (PWA)', 'Node.js', 'PostgreSQL', 'AFIP', 'Gemini'],
     es: {

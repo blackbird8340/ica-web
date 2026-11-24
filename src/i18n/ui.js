@@ -15,7 +15,7 @@ export const ui = {
     meta: {
       title: 'ICA | Desarrollo Web & Soluciones Digitales',
       description:
-        'Estudio de desarrollo de Imanol Castro. Sitios web, sistemas de gestión y apps con IA, desde la primera idea hasta producción.',
+        'Soy Imanol Castro, desarrollador full-stack. Hago sitios web, sistemas de gestión y apps con IA, desde la primera idea hasta producción.',
       ogLocale: 'es_AR',
       keywords:
         'desarrollo web, diseño web, landing page, sistema a medida, páginas web, Argentina, programación web, sitios web, inteligencia artificial, facturación electrónica',
@@ -35,13 +35,13 @@ export const ui = {
     hero: {
       title: 'Sitios, sistemas y apps que se usan todos los días.',
       subtitle:
-        'ICA es el estudio de desarrollo de Imanol Castro. Diseñamos y programamos desde la primera idea hasta que está en producción, y después lo seguimos cuidando.',
-      cta: 'Contanos tu proyecto',
+        'Soy Imanol Castro, desarrollador full-stack. Diseño y programo cada proyecto desde la primera idea hasta que está en producción, y después lo sigo cuidando.',
+      cta: 'Contame tu proyecto',
       secondary: 'Ver proyectos',
     },
     services: {
-      title: 'Qué hacemos',
-      intro: 'Cada proyecto es a medida. Estos son los que más hacemos.',
+      title: 'Qué hago',
+      intro: 'Cada proyecto es a medida. Estos son los que más hago.',
       example: 'Por ejemplo',
       items: [
         {
@@ -66,8 +66,8 @@ export const ui = {
         },
         {
           title: 'Mantenimiento',
-          description: 'Hosting, dominio, correo, actualizaciones y copias de seguridad. Si algo falla, nos ocupamos.',
-          example: 'Todos nuestros clientes',
+          description: 'Hosting, dominio, correo, actualizaciones y copias de seguridad. Si algo falla, me ocupo yo.',
+          example: 'Todos mis clientes',
         },
       ],
     },
@@ -79,37 +79,38 @@ export const ui = {
       appStore: 'Ver en App Store',
       private: 'Sistema privado del cliente',
       wip: 'En desarrollo',
+      demo: 'Capturas con datos de demostración',
       moreTitle: 'Más trabajos',
       cvTitle: '¿Querés el detalle completo?',
-      cvText: 'En el CV de Imanol están la experiencia, los proyectos y las tecnologías con las que trabajamos.',
+      cvText: 'En mi CV están mi experiencia, los proyectos y las tecnologías con las que trabajo.',
       cvPrimary: 'Ver CV en español',
       cvSecondary: 'CV in English',
     },
     process: {
-      title: 'Cómo trabajamos',
+      title: 'Cómo trabajo',
       intro: 'Cuatro pasos, y en cada uno ves avances reales antes de seguir.',
       steps: [
         {
           title: 'Entender',
-          description: 'Nos contás qué necesitás. Miramos tu negocio y tu competencia, y te proponemos qué hacer y cuánto cuesta.',
+          description: 'Me contás qué necesitás. Miro tu negocio y tu competencia, y te propongo qué hacer y cuánto cuesta.',
         },
         {
           title: 'Diseñar',
-          description: 'Te mostramos cómo va a quedar antes de programar, y lo ajustamos juntos.',
+          description: 'Te muestro cómo va a quedar antes de programar, y lo ajustamos juntos.',
         },
         {
           title: 'Programar',
-          description: 'Lo construimos con pruebas automáticas y te pasamos una versión para que la uses antes de publicar.',
+          description: 'Lo construyo con pruebas automáticas y te paso una versión para que la uses antes de publicar.',
         },
         {
           title: 'Publicar y cuidar',
-          description: 'Lo ponemos en línea con analítica y SEO, y quedamos a cargo del mantenimiento.',
+          description: 'Lo pongo en línea con analítica y SEO, y me quedo a cargo del mantenimiento.',
         },
       ],
     },
     contact: {
       title: '¿Tenés un proyecto en mente?',
-      intro: 'Contanos qué necesitás y te respondemos en menos de 24 horas.',
+      intro: 'Contame qué necesitás y te respondo en menos de 24 horas.',
       whatsappHint: 'La forma más rápida',
       emailHint: 'Email',
       phoneHint: 'Teléfono',
@@ -120,15 +121,15 @@ export const ui = {
       emailPlaceholder: 'tu@email.com',
       message: 'Mensaje',
       messagePlaceholder: 'Qué necesitás, para cuándo y cualquier dato que sirva',
-      success: 'Mensaje enviado. Te respondemos en menos de 24 horas.',
-      error: 'No se pudo enviar. Escribinos por WhatsApp o a contacto@icaweb.dev.',
+      success: 'Mensaje enviado. Te respondo en menos de 24 horas.',
+      error: 'No se pudo enviar. Escribime por WhatsApp o a contacto@icaweb.dev.',
       sending: 'Enviando…',
       send: 'Enviar mensaje',
       subject: 'Nuevo mensaje de',
     },
     footer: { rights: 'Todos los derechos reservados' },
     whatsapp: {
-      aria: 'Escribir por WhatsApp',
+      aria: 'Escribime por WhatsApp',
       text: 'Hola! Vi tu web y me interesa un proyecto.',
     },
   },
@@ -137,7 +138,7 @@ export const ui = {
     meta: {
       title: 'ICA | Web Development & Digital Solutions',
       description:
-        "Imanol Castro's development studio. Websites, business systems and AI-powered apps, from the first idea to production.",
+        "I'm Imanol Castro, a full-stack developer. I build websites, business systems and AI-powered apps, from the first idea to production.",
       ogLocale: 'en_US',
       keywords:
         'web development, web design, landing page, custom software, websites, Argentina, AI, full-stack developer, iOS app',
@@ -157,13 +158,13 @@ export const ui = {
     hero: {
       title: 'Websites, systems and apps people use every day.',
       subtitle:
-        "ICA is Imanol Castro's development studio. We design and build from the first idea all the way to production, and we keep looking after it afterwards.",
-      cta: 'Tell us about your project',
-      secondary: 'See our work',
+        "I'm Imanol Castro, a full-stack developer. I design and build every project from the first idea all the way to production, and I keep looking after it afterwards.",
+      cta: 'Tell me about your project',
+      secondary: 'See my work',
     },
     services: {
-      title: 'What we do',
-      intro: 'Every project is custom. These are the ones we do most.',
+      title: 'What I do',
+      intro: 'Every project is custom. These are the ones I do most.',
       example: 'For example',
       items: [
         {
@@ -188,51 +189,52 @@ export const ui = {
         },
         {
           title: 'Maintenance',
-          description: 'Hosting, domain, email, updates and backups. If something breaks, we handle it.',
-          example: 'All of our clients',
+          description: 'Hosting, domain, email, updates and backups. If something breaks, I handle it.',
+          example: 'All of my clients',
         },
       ],
     },
     portfolio: {
       title: 'Work',
-      intro: 'Our own products and client work. All of it is in use.',
+      intro: 'My own products and client work. All of it is in use.',
       stack: 'Stack',
       visit: 'Visit site',
       appStore: 'View on the App Store',
       private: 'Private client system',
       wip: 'In development',
+      demo: 'Screenshots use demo data',
       moreTitle: 'More work',
       cvTitle: 'Want the full picture?',
-      cvText: "Imanol's CV covers the experience, projects and technologies we work with.",
+      cvText: 'My CV covers my experience, projects and the technologies I work with.',
       cvPrimary: 'View CV in English',
       cvSecondary: 'CV en español',
     },
     process: {
-      title: 'How we work',
+      title: 'How I work',
       intro: 'Four steps, and at each one you see real progress before we move on.',
       steps: [
         {
           title: 'Understand',
-          description: 'You tell us what you need. We look at your business and competitors and propose what to build and what it costs.',
+          description: 'You tell me what you need. I look at your business and competitors and propose what to build and what it costs.',
         },
         {
           title: 'Design',
-          description: 'We show you how it will look before writing code, and we refine it together.',
+          description: 'I show you how it will look before writing code, and we refine it together.',
         },
         {
           title: 'Build',
-          description: 'We build it with automated tests and give you a version to try before it goes live.',
+          description: 'I build it with automated tests and give you a version to try before it goes live.',
         },
         {
           title: 'Launch and look after',
-          description: 'We put it online with analytics and SEO, and we take care of maintenance.',
+          description: 'I put it online with analytics and SEO, and I take care of maintenance.',
         },
       ],
     },
     contact: {
       title: 'Got a project in mind?',
-      intro: "Tell us what you need and we'll get back to you within 24 hours.",
-      whatsappHint: 'Fastest way to reach us',
+      intro: "Tell me what you need and I'll get back to you within 24 hours.",
+      whatsappHint: 'Fastest way to reach me',
       emailHint: 'Email',
       phoneHint: 'Phone',
       locationHint: 'Location',
@@ -242,15 +244,15 @@ export const ui = {
       emailPlaceholder: 'you@email.com',
       message: 'Message',
       messagePlaceholder: 'What you need, by when, and anything else that helps',
-      success: "Message sent. We'll reply within 24 hours.",
-      error: "Couldn't send it. Reach us on WhatsApp or at contacto@icaweb.dev.",
+      success: "Message sent. I'll reply within 24 hours.",
+      error: "Couldn't send it. Reach me on WhatsApp or at contacto@icaweb.dev.",
       sending: 'Sending…',
       send: 'Send message',
       subject: '[EN] Nuevo mensaje de',
     },
     footer: { rights: 'All rights reserved' },
     whatsapp: {
-      aria: 'Message us on WhatsApp',
+      aria: 'Message me on WhatsApp',
       text: "Hi! I saw your website and I'm interested in a project.",
     },
   },
