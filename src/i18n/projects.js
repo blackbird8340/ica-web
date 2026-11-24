@@ -6,7 +6,7 @@ export const featured = [
   {
     slug: 'conexo-patagonico',
     name: 'Conexo Patagónico',
-    image: '/projects/conexo-panel-revistas.webp',
+    image: '/projects/conexo-panel-inicio.webp',
     imageFit: 'cover',
     // Captura chica encima: la web pública
     inset: { src: '/projects/conexo-patagonico.webp', es: 'La web pública', en: 'The public website' },
