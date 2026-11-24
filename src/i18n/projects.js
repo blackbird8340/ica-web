@@ -44,27 +44,27 @@ export const featured = [
     imageFit: 'cover',
     link: { es: 'https://currentwildfires.com/es/', en: 'https://currentwildfires.com/' },
     linkType: 'site',
-    stack: ['Astro', 'PHP 8', 'MySQL', 'MapLibre', 'Gemini'],
+    stack: ['SEO', 'GEO', 'Astro', 'PHP 8', 'MySQL', 'MapLibre', 'Gemini'],
     es: {
       kind: 'Producto propio · 2026',
       tagline: 'Mapa mundial de incendios en tiempo real',
       summary:
-        'Mapa en vivo con datos de la NASA y agencias oficiales, en inglés y español. Se viralizó en temporada de incendios y hoy se sostiene con SEO programático: un motor decide qué incendio merece su propia página según la demanda real.',
+        'Mapa en vivo con datos de la NASA y agencias oficiales, en inglés y español. Se viralizó en temporada de incendios y crece con SEO programático: un motor decide qué incendio merece su propia página según la demanda real. Además está optimizado para GEO, para que ChatGPT y otros asistentes de IA lo lean y lo recomienden.',
       metrics: [
         { value: '800K+', label: 'usuarios en 2026' },
-        { value: '1,6M', label: 'vistas de página' },
-        { value: '561K', label: 'clics desde Google' },
+        { value: '561K', label: 'clics desde Google (SEO)' },
+        { value: '10K+', label: 'visitas desde ChatGPT y otras IA (GEO)' },
       ],
     },
     en: {
       kind: 'Own product · 2026',
       tagline: 'Real-time global wildfire map',
       summary:
-        'A live map fed by NASA and official agency data, in English and Spanish. It went viral during fire season and now grows through programmatic SEO: an engine decides which fires get their own page based on real demand.',
+        'A live map fed by NASA and official agency data, in English and Spanish. It went viral during fire season and grows through programmatic SEO: an engine decides which fires get their own page based on real demand. It is also optimized for GEO, so ChatGPT and other AI assistants read it and recommend it.',
       metrics: [
         { value: '800K+', label: 'users in 2026' },
-        { value: '1.6M', label: 'page views' },
-        { value: '561K', label: 'clicks from Google' },
+        { value: '561K', label: 'clicks from Google (SEO)' },
+        { value: '10K+', label: 'visits from ChatGPT and other AI (GEO)' },
       ],
     },
   },

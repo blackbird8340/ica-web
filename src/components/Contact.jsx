@@ -49,14 +49,14 @@ export default function Contact({ lang = "es" }) {
   ];
 
   return (
-    <section id="contacto" className="relative pt-28 md:pt-40 pb-24">
+    <section id="contacto" className="relative pt-20 md:pt-28 pb-16 md:pb-20">
       <div className="max-w-7xl mx-auto px-5 sm:px-8 lg:px-10">
         <h2 className="font-display text-gradient text-[2.6rem] sm:text-6xl lg:text-[5.2rem] max-w-[12em] [text-wrap:balance]">
           {t.title}
         </h2>
         <p className="text-gray-400 text-lg md:text-xl mt-6 max-w-xl">{t.intro}</p>
 
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 mt-16 md:mt-20">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-14 lg:gap-16 mt-12 md:mt-14">
           <ul className="lg:col-span-5 space-y-7">
             {channels.map(({ href, icon: Icon, title, hint, external }) => {
               const inner = (

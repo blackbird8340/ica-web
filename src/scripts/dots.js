@@ -1,6 +1,6 @@
 // Fondo de puntos del cierre (idea de styles/luma-fondo-puntos), con los colores de ICA.
 // Una grilla de puntitos donde un "ruido" suave da forma, y algunos de color que se prenden y apagan.
-// Con "reducir movimiento" los puntos de color quedan quietos. Se pausa cuando no está en pantalla.
+// Un barrido de luz cruza el mapa despacio. Con "reducir movimiento" todo queda quieto. Se pausa cuando no está en pantalla.
 const lienzo = document.querySelector('[data-dots]')
 if (lienzo) {
   const ctx = lienzo.getContext('2d')
@@ -38,20 +38,30 @@ if (lienzo) {
     for (let y = PASO / 2; y < h; y += PASO)
       for (let x = PASO / 2; x < w; x += PASO) {
         if (tierra(x, y) < 0.52) continue
-        const color = azar(x * 0.37, y * 0.91) < 0.05 ? COLORES[Math.floor(azar(y, x) * COLORES.length)] : null
-        puntos.push({ x, y, color, fase: azar(x, y * 3) * Math.PI * 2, vel: 0.4 + azar(y * 2, x) * 0.8 })
+        const color = azar(x * 0.37, y * 0.91) < 0.08 ? COLORES[Math.floor(azar(y, x) * COLORES.length)] : null
+        puntos.push({ x, y, color, fase: azar(x, y * 3) * Math.PI * 2, vel: 0.8 + azar(y * 2, x) * 1.6 })
       }
   }
 
   function dibujar(t) {
     ctx.clearRect(0, 0, lienzo.clientWidth, lienzo.clientHeight)
+    const s = t / 1000
+    // Barrido de luz: una franja ancha que cruza el mapa en diagonal, cada ~9 segundos
+    const ciclo = ancho + lienzo.clientHeight + 600
+    const frente = ((s * 140) % ciclo) - 300
     for (const p of puntos) {
-      const brillo = p.color
-        ? quieto ? 0.6 : 0.25 + 0.5 * (0.5 + 0.5 * Math.sin((t / 1000) * p.vel + p.fase))
-        : 0.1
-      ctx.fillStyle = `rgba(${p.color ?? '255,255,255'},${brillo})`
+      let brillo
+      if (p.color) {
+        const b = 0.5 + 0.5 * Math.sin(s * p.vel + p.fase)
+        brillo = quieto ? 0.6 : 0.2 + 0.7 * b * b
+      } else {
+        const d = Math.abs(p.x + p.y * 0.6 - frente)
+        const luz = quieto ? 0 : Math.max(0, 1 - d / 260)
+        brillo = 0.09 + 0.22 * luz * luz
+      }
+      ctx.fillStyle = `rgba(${p.color ?? '255,255,255'},${brillo.toFixed(3)})`
       ctx.beginPath()
-      ctx.arc(p.x, p.y, RADIO, 0, Math.PI * 2)
+      ctx.arc(p.x, p.y, p.color ? RADIO * 1.15 : RADIO, 0, Math.PI * 2)
       ctx.fill()
     }
     if (!quieto && visible) requestAnimationFrame(dibujar)
